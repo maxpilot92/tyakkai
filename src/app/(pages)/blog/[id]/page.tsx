@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, CalendarIcon, User2Icon } from "lucide-react";
+import axios from "axios";
 
 type Blog = {
   id: string;
@@ -31,10 +32,14 @@ export default function BlogPost() {
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/blogs?blogId=${params.id}`
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/blog?blogId=${params.id}`
         );
-        const data = await response.json();
+
+        const data = response.data;
+        console.log("Response:", response);
+        console.log("Blog data:", data.data.content);
+
         if (data.status === "success") {
           setBlog(data.data);
         }
