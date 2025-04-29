@@ -2,16 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Facebook, Instagram, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import AnimatedButton from "./AnimatedButton";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full text-black bg-white shadow-md mx-0">
+    <header className="sticky top-0 z-50  text-black bg-white mx-0">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
@@ -86,39 +87,7 @@ export default function Navbar() {
         </nav>
 
         {/* Social Icons */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Link
-            href="https://facebook.com"
-            className=" hover:text-[#ffc700] transition-colors"
-          >
-            <Facebook className="h-5 w-5" />
-          </Link>
-          <Link
-            href="https://instagram.com"
-            className=" hover:text-[#ffc700] transition-colors"
-          >
-            <Instagram className="h-5 w-5" />
-          </Link>
-          <Link
-            href="https://twitter.com"
-            className=" hover:text-[#ffc700] transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-5 w-5"
-            >
-              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-            </svg>
-          </Link>
-        </div>
+        <AnimatedButton>Get Started</AnimatedButton>
 
         {/* Mobile Menu Button */}
         <button
@@ -212,33 +181,7 @@ export default function Navbar() {
             Contact Us
           </Link>
 
-          <div className="flex space-x-6 mt-8">
-            <Link href="https://facebook.com" className=" hover:text-[#ffc700]">
-              <Facebook className="h-6 w-6" />
-            </Link>
-            <Link
-              href="https://instagram.com"
-              className=" hover:text-[#ffc700]"
-            >
-              <Instagram className="h-6 w-6" />
-            </Link>
-            <Link href="https://twitter.com" className=" hover:text-[#ffc700]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-6 w-6"
-              >
-                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-              </svg>
-            </Link>
-          </div>
+          <AnimatedButton>Get Started</AnimatedButton>
         </div>
       </div>
     </header>

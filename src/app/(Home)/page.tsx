@@ -8,7 +8,6 @@ import { Services } from "./_components/Services";
 import { HeroParallaxDemo } from "./_components/HeroParallax";
 import { AnimatedTestimonialsDemo } from "./_components/Testimonial";
 import Footer from "@/components/footer";
-import CTA from "./_components/CTA";
 
 export default function Home() {
   return (
@@ -22,7 +21,7 @@ export default function Home() {
       <Services />
       <HeroParallaxDemo />
       <AnimatedTestimonialsDemo />
-      <CTA />
+
       <Footer />
     </div>
   );

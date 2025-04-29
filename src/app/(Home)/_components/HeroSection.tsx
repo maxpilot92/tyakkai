@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AnimatedButton from "@/components/AnimatedButton";
 
 export default function HeroSection() {
   const containerVariants = {
@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   return (
     <motion.section
-      className="min-h-[85vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-hidden m-10"
+      className="min-h-[85vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-hidden mx-10  mb-10 lg:mb-20"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -47,14 +47,17 @@ export default function HeroSection() {
       {/* Headings */}
       <div className="text-center mb-8 md:mb-10 lg:mb-12 max-w-3xl">
         <motion.h2
-          className="text-lg md:text-xl font-medium text-[#ffc700] mb-2 tracking-wider"
+          className="tracking-[-0.05em] text-[80px] font-medium leading-[115%] font-switzer"
           variants={itemVariants}
         >
-          Unlimited Design
+          Unlimited{" "}
+          <motion.span className="italic font-medium font-cormorant">
+            Design
+          </motion.span>
         </motion.h2>
 
         <motion.h1
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 tracking-tight"
+          className="text-4xl md:text-5xl lg:text-6xl text-black mb-6 tracking-[-0.05em] text-[80px] font-medium leading-[115%] font-switzer"
           variants={itemVariants}
         >
           Anytime You Need It
@@ -74,27 +77,17 @@ export default function HeroSection() {
         className="flex flex-col sm:flex-row gap-4 mt-4 md:mt-6"
         variants={itemVariants}
       >
-        <Button
-          className="group relative overflow-hidden bg-[#ffc700] hover:bg-[#ffc700]/90 text-black px-6 py-6 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out w-64"
-          size="lg"
-        >
-          <span className="flex items-center justify-center gap-2 absolute inset-0 transition-transform duration-300 ease-in-out group-hover:-translate-x-full">
-            Get Started <ArrowRight className="h-4 w-4" />
-          </span>
-          <span className="absolute inset-0 flex items-center justify-center translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out">
-            Explore Plans <ArrowRight className="h-4 w-4 ml-1" />
-          </span>
-        </Button>
+        <AnimatedButton>Get Started</AnimatedButton>
 
         <Button
-          className="group relative overflow-hidden bg-transparent text-black hover:text-[#ffc700] border border-black hover:border-[#ffc700] px-6 py-6 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out w-64"
+          className="group relative overflow-hidden bg-transparent text-black hover:text-[#ffc700] border border-black hover:border-[#ffc700] px-6 py-6 rounded-lg text-lg font-medium transition-all duration-1000 ease-in-out w-64 "
           variant="outline"
           size="lg"
         >
-          <span className="flex items-center justify-center gap-2 absolute inset-0 transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+          <span className="flex items-center justify-center gap-2 absolute inset-0 transition-transform duration-1000 ease-in-out group-hover:-translate-y-full">
             View Portfolio
           </span>
-          <span className="absolute inset-0 flex items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+          <span className="absolute inset-0 flex items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-1000 ease-in-out">
             See Our Work
           </span>
         </Button>
