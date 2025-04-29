@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   return (
     <motion.section
-      className="min-h-[85vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-hidden"
+      className="min-h-[85vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-hidden m-10"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

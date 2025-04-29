@@ -3,7 +3,7 @@ import { HoverEffect } from "@/components/ui/card-hover-effect";
 
 export function Services() {
   return (
-    <div className="max-w-full mx-auto px-8">
+    <div className="max-w-full mx-auto px-8 my-10">
       <div className="flex justify-center items-center text-center lg:mx-20 mx-10 text-5xl font-bold text-black dark:text-white">
         <h1>All design, branding and marketing services for you</h1>
       </div>

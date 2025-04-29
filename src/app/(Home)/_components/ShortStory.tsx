@@ -4,7 +4,7 @@ import { Asterisk } from "lucide-react";
 export default function ShortStory() {
   return (
     <div>
-      <div className="flex items-start justify-between w-full max-w-7xl mx-auto px-4 py-16">
+      <div className="flex flex-col md:flex-row items-start justify-between w-full max-w-7xl mx-auto px-4 py-16">
         <div className="flex items-center gap-2">
           <Asterisk className="h-6 w-6 text-orange-500" />
           <span className="text-lg font-medium">Our short story</span>
