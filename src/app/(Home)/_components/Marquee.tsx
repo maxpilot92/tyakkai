@@ -1,3 +1,4 @@
+"use client";
 import { Marquee } from "@/components/magicui/marquee";
 import Image from "next/image";
 
@@ -28,8 +29,8 @@ export function MarqueeLogo() {
   const LOGO_CONTAINER = "h-24 w-48";
 
   return (
-    <div className="relative flex w-full items-center justify-center overflow-hidden m-10">
-      <Marquee pauseOnHover className="[--duration:20s]">
+    <div className="relative flex max-w-5xl mx-auto items-center justify-center overflow-hidden py-10">
+      <Marquee className="[--duration:20s]">
         {reviews.map(({ img, alt }, idx) => (
           <div
             key={idx}
