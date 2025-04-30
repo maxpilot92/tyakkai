@@ -130,6 +130,7 @@ export default function HeroSection() {
         <div className="max-w-7xl mx-auto">
           <MarqueeLogo />
           <ShortStory />
+          <hr />
           <Offering />
           <Services />
           <HeroParallaxDemo />

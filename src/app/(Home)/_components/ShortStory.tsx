@@ -146,31 +146,31 @@ export default function ShortStory() {
 
   return (
     <div ref={ref} className="overflow-hidden">
-      <div className="flex flex-col md:flex-row items-center justify-around gap-8 w-full max-w-screen mx-auto px-4 py-10 relative">
-        <div className="flex gap-2 mb-6 md:mb-0 md:w-1/4 ">
-          <div className="md:absolute flex md:top-[85px] justify-center items-center">
-            <motion.div
-              variants={iconVariants}
-              initial="hidden"
-              animate={shouldAnimate ? "visible" : "hidden"}
-              whileHover="hover"
-            >
-              <Asterisk className="h-8 w-8 text-orange-500" />
-            </motion.div>
-            <motion.span
-              className="text-xl font-medium"
-              initial={{ opacity: 0, x: -20 }}
-              animate={
-                shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-              }
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              Our short story
-            </motion.span>
-          </div>
+      <div className="flex flex-col md:flex-row w-full max-w-screen mx-auto px-4 py-10 relative md:h-[390px]">
+        {/* Position the title at the top */}
+        <div className="absolute top-20 left-4 flex items-center gap-2 z-10">
+          <motion.div
+            variants={iconVariants}
+            initial="hidden"
+            animate={shouldAnimate ? "visible" : "hidden"}
+            whileHover="hover"
+          >
+            <Asterisk className="h-8 w-8 text-orange-500" />
+          </motion.div>
+          <motion.span
+            className="text-xl font-medium"
+            initial={{ opacity: 0, x: -20 }}
+            animate={
+              shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+            }
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            Our short story
+          </motion.span>
         </div>
 
-        <div className="md:w-3/4">
+        {/* Position the text to start at the top */}
+        <div className="w-full md:w-3/4 md:ml-auto mt-16 md:mt-0">
           <motion.div
             className="text-4xl md:text-5xl lg:text-5xl font-semibold leading-tight"
             variants={containerVariants}
