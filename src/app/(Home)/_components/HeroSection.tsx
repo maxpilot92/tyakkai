@@ -5,10 +5,11 @@ import ImageScroll from "./ContainerScroll";
 import { MarqueeLogo } from "./Marquee";
 import ShortStory from "./ShortStory";
 import Offering from "./Offering";
-import { Services } from "./Services";
-import { HeroParallaxDemo } from "./HeroParallax";
-import { AnimatedTestimonialsDemo } from "./Testimonial";
+import { Service, Services } from "./Services";
 import Footer from "@/components/footer";
+import Portfolio from "./Portfolio";
+import TestimonialCarousel from "./Testimonial";
+import Faq from "./Faq";
 
 const cormorantFont = Cormorant({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ const cormorantFont = Cormorant({
   style: ["normal", "italic"],
 });
 
-export default function HeroSection() {
+export default function HeroSection({ services }: { services?: Service[] }) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -48,6 +49,7 @@ export default function HeroSection() {
         height: "130vh",
         marginBottom: "250px",
       }}
+      className="rounded-4xl mx-10"
     >
       <motion.section
         className="min-h-[70vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-hidden mx-10  mb-10 lg:mb-20"
@@ -132,11 +134,15 @@ export default function HeroSection() {
           <ShortStory />
           <hr />
           <Offering />
-          <Services />
-          <HeroParallaxDemo />
-          <AnimatedTestimonialsDemo />
-
-          <Footer />
+          {/* <Scrolling /> */}
+          <Services data={services} />
+          {/* <HeroParallaxDemo /> */}
+          <Portfolio />
+          <TestimonialCarousel />
+          <div className="-mx-10">
+            <Faq />
+            <Footer />
+          </div>
         </div>
       </div>
     </div>

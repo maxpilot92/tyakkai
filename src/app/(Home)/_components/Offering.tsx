@@ -3,10 +3,24 @@
 import { Clock, User, Zap } from "lucide-react";
 import Image from "next/image";
 import DigitalSolution from "@/../public/digitalSolution.svg";
-import { motion } from "framer-motion";
 import Cursor from "@/../public/cursor.svg";
+import { useEffect, useState } from "react";
+import MoveEffect from "@/components/MoveEffect";
 
 export default function Offering() {
+  const [number, setNumber] = useState(0);
+
+  useEffect(() => {
+    const start = Date.now();
+    console.log(number);
+    const interval = setInterval(() => {
+      const time = (Date.now() - start) / 1800; // seconds
+      const value = Math.sin(time * 2) * 10; // oscillates between -10 and 10
+      setNumber(parseFloat(value.toFixed(2)));
+    }, 10);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div className="w-full bg-white">
       <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row gap-8 md:gap-16">
@@ -16,67 +30,18 @@ export default function Offering() {
             <Image
               src={DigitalSolution}
               alt="Creative Director"
-              width={600}
-              height={600}
+              width={6000}
+              height={6000}
               className="object-cover"
             />
-
-            {/* Label overlays */}
-            {/* <div className="absolute bottom-6 left-6 flex flex-col gap-2">
-              <div className="bg-white text-black px-4 py-2 rounded-full font-medium">
-                David Boon
-              </div>
-              <div className="bg-white text-black px-4 py-2 rounded-full font-medium">
-                Creative Director at GravityX
-              </div>
-            </div> */}
-
-            {/* GravityX badge */}
-            <div className="relative w-full bg-white overflow-hidden">
-              <motion.div
-                className="absolute text-[#ffc700] z-10"
-                animate={{
-                  x: ["-20%", "120%"],
-                  y: ["20%", "-120%"],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                fefewfewfewfefewffewffewfew
-                <Image
-                  src={Cursor}
-                  alt="Cursor"
-                  width={50}
-                  height={50}
-                  className="w-8 h-8"
-                />
-              </motion.div>
+            <div className="bg-white absolute rounded-full px-5 py-3 z-10 bottom-20 left-10 font-[550]">
+              Diwakar Bhatt
+            </div>
+            <div className="bg-white absolute rounded-full px-5 py-3 z-10 bottom-7 left-10 font-[550]">
+              Digital Marketing Expert
             </div>
 
-            {/* Decorative lines */}
-            {/* <div className="absolute top-1/3 right-16">
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 60 60"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 30C10 30 30 10 50 30"
-                  stroke="white"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M10 40C10 40 30 20 50 40"
-                  stroke="white"
-                  strokeWidth="2"
-                />
-              </svg>
-            </div> */}
+            <MoveEffect imageUrl={Cursor} className="top-80 right-20 " />
           </div>
         </div>
 

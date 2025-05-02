@@ -1,0 +1,62 @@
+import Image from "next/image";
+import React from "react";
+import P1 from "@/../public/portfolio/p1.svg";
+
+// Extract Card component to its own file in a real application
+const Card = ({
+  imageUrl,
+  title,
+  description,
+}: {
+  imageUrl: string;
+  title: string;
+  description: string;
+}) => {
+  return (
+    <div className="flex flex-col items-start justify-center gap-4 w-full max-w-md">
+      <div className="w-full h-[476px] relative overflow-hidden rounded-2xl">
+        <Image
+          src={imageUrl}
+          alt={title}
+          fill
+          className="object-cover rounded-2xl hover:scale-110 transition-transform duration-300"
+          priority
+        />
+      </div>
+      <h3 className="font-semibold text-xl">{title}</h3>
+      <p className="text-black text-sm font-normal">{description}</p>
+    </div>
+  );
+};
+
+export default function Portfolio() {
+  // Sample portfolio items - in a real app, this could come from a CMS or API
+  const portfolioItems = [
+    {
+      id: 1,
+      imageUrl: P1,
+      title: "Project One",
+      description: "Description of the first project and its impact.",
+    },
+    // More items can be added here
+  ];
+
+  return (
+    <section className="container mx-auto px-4 py-16 lg:my-20 lg:w-[1000px]">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-black mb-12">
+        Our work is not just a preview, but is present in the real world!
+      </h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {portfolioItems.map((item) => (
+          <Card
+            key={item.id}
+            imageUrl={item.imageUrl}
+            title={item.title}
+            description={item.description}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
