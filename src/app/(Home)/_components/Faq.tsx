@@ -102,6 +102,9 @@ export default function Faq() {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
+                  style={{
+                    letterSpacing: "0px",
+                  }}
                 >
                   <div className="pt-4 pb-2 pr-8 text-gray-600">
                     {faq.answer}

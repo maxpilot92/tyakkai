@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
 import MoveEffect from "@/components/MoveEffect";
+import TabCarousel from "@/components/TabCarousel";
+import { Category } from "@/hooks/useCategory";
+import { useEffect, useState } from "react";
 
 export interface Service {
   id: string;
@@ -9,14 +12,25 @@ export interface Service {
   image?: string;
   createdAt: string; // or Date if you parse it
   updatedAt: string; // or Date if you parse it
-  image1?: string;
-  image2?: string;
+  cursor1?: string;
+  cursor2?: string;
+  Category: Category;
 }
 
 export function Services({ data }: { data?: Service[] }) {
+  const [tabs, setTabs] = useState<Category[]>([]);
+  useEffect(() => {
+    const tabs = data?.map(
+      (item) => item.Category.name
+    ) as unknown as Category[];
+    setTabs(tabs!);
+  }, []);
+
   if (!data) {
     return <>no data</>;
   }
+
+  console.log(tabs);
   return (
     <div className="max-w-full mx-auto my-10">
       <div
@@ -27,7 +41,9 @@ export function Services({ data }: { data?: Service[] }) {
           All design, branding and marketing services for you
         </h1>
       </div>
-
+      <div className="flex w-full items-start mt-10 justify-start">
+        <TabCarousel tabs={tabs} />
+      </div>
       {/* <HoverEffect items={projects} /> */}
       <div className="lg:mt-20 my-10 flex flex-wrap gap-5">
         {data.map((item, index) => (
@@ -39,7 +55,8 @@ export function Services({ data }: { data?: Service[] }) {
               title={item.title}
               description={item.description}
               imageUrl={item.image}
-              image2={item.image2}
+              cursor2={item.cursor2}
+              cursor1={item.cursor1}
             />
           </div>
         ))}
@@ -52,14 +69,14 @@ function Card({
   title,
   description,
   imageUrl,
-  // image1,
-  image2,
+  cursor1,
+  cursor2,
 }: {
   title: string;
   description: string;
   imageUrl?: string;
-  // image1?: string;
-  image2?: string;
+  cursor1?: string;
+  cursor2?: string;
 }) {
   return (
     <div className="bg-[#faf0e6] rounded-2xl h-[490px] w-[400px]">
@@ -82,8 +99,12 @@ function Card({
             height={400}
             className="object-cover"
           />
-          <MoveEffect imageUrl={image2!} className="top-16 right-4" />
-          <MoveEffect imageUrl={image2!} orientation="left" />
+          <MoveEffect
+            imageUrl={cursor1!}
+            orientation="left"
+            className="top-28 left-16"
+          />
+          <MoveEffect imageUrl={cursor2!} className="right-0" />
         </div>
 
         <p className="text-[#000000] text-sm font-[420] flex justify-center items-center text-center ">

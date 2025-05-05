@@ -10,6 +10,7 @@ import Footer from "@/components/footer";
 import Portfolio from "./Portfolio";
 import TestimonialCarousel from "./Testimonial";
 import Faq from "./Faq";
+import HorizontalScrollingCarousel from "./HorizontalScrollingCarousel";
 
 const cormorantFont = Cormorant({
   subsets: ["latin"],
@@ -136,6 +137,7 @@ export default function HeroSection({ services }: { services?: Service[] }) {
           <Offering />
           {/* <Scrolling /> */}
           <Services data={services} />
+          <HorizontalScrollingCarousel />
           {/* <HeroParallaxDemo /> */}
           <Portfolio />
           <TestimonialCarousel />

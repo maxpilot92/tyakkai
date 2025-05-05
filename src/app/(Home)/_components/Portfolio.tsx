@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import P1 from "@/../public/portfolio/p1.svg";
+import { motion } from "framer-motion";
 
 // Extract Card component to its own file in a real application
 const Card = ({
@@ -43,18 +44,34 @@ export default function Portfolio() {
 
   return (
     <section className="container mx-auto px-4 py-16 lg:my-20 lg:w-[1000px]">
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-black mb-12">
-        Our work is not just a preview, but is present in the real world!
-      </h1>
+      <div className="flex items-center justify-center ">
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          style={{ letterSpacing: "-2px" }}
+          className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black mb-12"
+        >
+          Our work is not just a preview, but is present in the real world!
+        </motion.h1>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {portfolioItems.map((item) => (
-          <Card
+        {portfolioItems.map((item, index) => (
+          <motion.div
             key={item.id}
-            imageUrl={item.imageUrl}
-            title={item.title}
-            description={item.description}
-          />
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+          >
+            <Card
+              imageUrl={item.imageUrl}
+              title={item.title}
+              description={item.description}
+            />
+          </motion.div>
         ))}
       </div>
     </section>
