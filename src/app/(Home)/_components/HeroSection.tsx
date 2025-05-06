@@ -11,14 +11,42 @@ import Portfolio from "./Portfolio";
 import TestimonialCarousel from "./Testimonial";
 import Faq from "./Faq";
 import HorizontalScrollingCarousel from "./HorizontalScrollingCarousel";
+import useServiceStore from "@/store/ServiceStore";
+import { useEffect } from "react";
+import useServiceCategoryStore from "@/store/ServiceCategory";
+import { Category } from "@/types/Category";
 
 const cormorantFont = Cormorant({
   subsets: ["latin"],
   weight: ["400", "500"], // include italic weights!
   style: ["normal", "italic"],
 });
+export default function HeroSection({
+  services,
+  serviceCategories,
+}: {
+  services?: Service[];
+  serviceCategories?: Category[];
+}) {
+  const { setServices } = useServiceStore();
+  const { setServiceCategory } = useServiceCategoryStore();
 
-export default function HeroSection({ services }: { services?: Service[] }) {
+  useEffect(() => {
+    if (services) {
+      setServices(services); // Only set the services if they exist
+    }
+  }, [services, setServices]);
+
+  useEffect(() => {
+    if (serviceCategories) {
+      console.log("serviceCategories", serviceCategories);
+      const uniqueCategories = [
+        ...new Map(serviceCategories?.map((c) => [c.name, c])).values(),
+      ];
+      setServiceCategory(uniqueCategories); // Only set the service categories if they exist
+    }
+  }, [serviceCategories, setServiceCategory]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -136,7 +164,7 @@ export default function HeroSection({ services }: { services?: Service[] }) {
           <hr />
           <Offering />
           {/* <Scrolling /> */}
-          <Services data={services} />
+          <Services />
           <HorizontalScrollingCarousel />
           {/* <HeroParallaxDemo /> */}
           <Portfolio />

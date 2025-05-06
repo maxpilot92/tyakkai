@@ -2,8 +2,9 @@
 import Image from "next/image";
 import MoveEffect from "@/components/MoveEffect";
 import TabCarousel from "@/components/TabCarousel";
-import { Category } from "@/hooks/useCategory";
 import { useEffect, useState } from "react";
+import useServiceStore from "@/store/ServiceStore";
+import { Category } from "@/types/Category";
 
 export interface Service {
   id: string;
@@ -17,20 +18,32 @@ export interface Service {
   Category: Category;
 }
 
-export function Services({ data }: { data?: Service[] }) {
-  const [tabs, setTabs] = useState<Category[]>([]);
+export function Services() {
+  const { services } = useServiceStore();
+  const [data, setData] = useState<Service[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>("");
+
   useEffect(() => {
-    const tabs = data?.map(
-      (item) => item.Category.name
-    ) as unknown as Category[];
-    setTabs(tabs!);
-  }, []);
+    if (services) {
+      setData(services);
+    }
+  }, [services]);
+
+  useEffect(() => {
+    if (activeCategory) {
+      const filteredData = services?.filter(
+        (item) => item.Category.name === activeCategory
+      );
+      setData(filteredData || []);
+    } else {
+      setData(services);
+    }
+  }, [activeCategory, services]);
 
   if (!data) {
     return <>no data</>;
   }
 
-  console.log(tabs);
   return (
     <div className="max-w-full mx-auto my-10">
       <div
@@ -42,7 +55,7 @@ export function Services({ data }: { data?: Service[] }) {
         </h1>
       </div>
       <div className="flex w-full items-start mt-10 justify-start">
-        <TabCarousel tabs={tabs} />
+        <TabCarousel setActiveCategory={setActiveCategory} />
       </div>
       {/* <HoverEffect items={projects} /> */}
       <div className="lg:mt-20 my-10 flex flex-wrap gap-5">
