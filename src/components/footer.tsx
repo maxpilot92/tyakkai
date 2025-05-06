@@ -3,7 +3,7 @@ import { MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
-    <div className="bg-black text-white px-8 py-12 md:px-12 md:py-16 rounded-4xl m-10">
+    <div className="bg-black text-white px-8 py-12 md:px-12 md:py-16 rounded-4xl m-10 w-full">
       {/* CTA Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
         <div>
@@ -173,7 +173,7 @@ export default function Footer() {
       </div>
 
       {/* Orange Shape */}
-      <div className="relative">
+      {/* <div className="relative">
         <div className="absolute right-0 bottom-0 w-24 h-24 md:w-32 md:h-32">
           <svg
             width="100%"
@@ -188,7 +188,7 @@ export default function Footer() {
             />
           </svg>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

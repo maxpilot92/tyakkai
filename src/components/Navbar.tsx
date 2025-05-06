@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50  text-black bg-white mx-0">
+    <header className="sticky top-0 z-50  text-black bg-white -mr-5 sm:mr-0 mx-0">
       <div className="container px-4 py-4 flex items-center justify-around h-[100px] max-w-screen">
         {/* Logo */}
         <Link href="/" className="flex items-center">

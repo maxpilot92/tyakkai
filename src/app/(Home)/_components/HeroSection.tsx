@@ -99,10 +99,10 @@ export default function HeroSection({
         height: "130vh",
         marginBottom: "250px",
       }}
-      className="rounded-4xl md:mx-10"
+      className="rounded-4xl md:mx-10 "
     >
       <motion.section
-        className="min-h-[70vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-hidden mx-10  mb-10 lg:mb-20"
+        className="min-h-[70vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-x-hidden mb-10 lg:mb-20"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -112,7 +112,7 @@ export default function HeroSection({
 
         {/* Accent circle */}
         <motion.div
-          className="absolute top-1/4 -right-20 w-80 h-80 rounded-full bg-[#ffc700]/20 blur-3xl opacity-70 -z-5"
+          className="absolute top-1/4 right-0 md:-right-20 w-40 md:w-80 h-40 md:h-80 rounded-full bg-[#ffc700]/20 blur-3xl opacity-70 -z-5"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.7 }}
           transition={{ duration: 1.5, delay: 0.3 }}
