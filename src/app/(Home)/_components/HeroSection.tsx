@@ -7,14 +7,16 @@ import ShortStory from "./ShortStory";
 import Offering from "./Offering";
 import { Service, Services } from "./Services";
 import Footer from "@/components/footer";
-import Portfolio from "./Portfolio";
 import TestimonialCarousel from "./Testimonial";
 import Faq from "./Faq";
 import HorizontalScrollingCarousel from "./HorizontalScrollingCarousel";
 import useServiceStore from "@/store/ServiceStore";
 import { useEffect } from "react";
-import useServiceCategoryStore from "@/store/ServiceCategory";
+import useServiceCategoryStore from "@/store/ServiceCategoryStore";
 import { Category } from "@/types/Category";
+import { Portfolio } from "@/types/Portfolio";
+import PortfolioPage from "./Portfolio";
+import usePortfolioStore from "@/store/PortfolioStore";
 
 const cormorantFont = Cormorant({
   subsets: ["latin"],
@@ -24,12 +26,15 @@ const cormorantFont = Cormorant({
 export default function HeroSection({
   services,
   serviceCategories,
+  portfolio,
 }: {
   services?: Service[];
   serviceCategories?: Category[];
+  portfolio?: Portfolio[];
 }) {
   const { setServices } = useServiceStore();
   const { setServiceCategory } = useServiceCategoryStore();
+  const { setPortfolio } = usePortfolioStore();
 
   useEffect(() => {
     if (services) {
@@ -39,13 +44,18 @@ export default function HeroSection({
 
   useEffect(() => {
     if (serviceCategories) {
-      console.log("serviceCategories", serviceCategories);
       const uniqueCategories = [
         ...new Map(serviceCategories?.map((c) => [c.name, c])).values(),
       ];
       setServiceCategory(uniqueCategories); // Only set the service categories if they exist
     }
   }, [serviceCategories, setServiceCategory]);
+
+  useEffect(() => {
+    if (portfolio) {
+      setPortfolio(portfolio);
+    }
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -167,7 +177,7 @@ export default function HeroSection({
           <Services />
           <HorizontalScrollingCarousel />
           {/* <HeroParallaxDemo /> */}
-          <Portfolio />
+          <PortfolioPage />
           <TestimonialCarousel />
           <div className="-mx-10">
             <Faq />

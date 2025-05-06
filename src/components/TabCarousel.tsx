@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, AnimationControls } from "framer-motion";
-import useServiceCategoryStore from "@/store/ServiceCategory";
+import useServiceCategoryStore from "@/store/ServiceCategoryStore";
 import { Category } from "@/types/Category";
 
 export default function TabCarousel({
@@ -45,7 +45,7 @@ export default function TabCarousel({
   }, [activeTab]);
 
   return (
-    <div className="max-w-[400px] relative p-2 before:content-[''] after:content-[''] before:absolute after:absolute before:top-0 after:top-0 before:left-0 after:right-0 before:w-12 after:w-12 before:h-full after:h-full before:z-10 after:z-10 before:pointer-events-none after:pointer-events-none before:bg-gradient-to-r after:bg-gradient-to-l before:from-white dark:before:from-[#0f0f0f] before:to-transparent after:from-white dark:after:from-[#0f0f0f] after:to-transparent">
+    <div className="max-w-[300px] lg:max-w-[500px] relative p-2 before:content-[''] after:content-[''] before:absolute after:absolute before:top-0 after:top-0 before:left-0 after:right-0 before:w-12 after:w-12 before:h-full after:h-full before:z-10 after:z-10 before:pointer-events-none after:pointer-events-none before:bg-gradient-to-r after:bg-gradient-to-l before:from-white dark:before:from-[#0f0f0f] before:to-transparent after:from-white dark:after:from-[#0f0f0f] after:to-transparent">
       <div ref={containerRef} className="overflow-hidden w-full scrollbar-hide">
         <motion.div
           className="flex gap-4 px-2 scroll-snap-x"

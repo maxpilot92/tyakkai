@@ -45,34 +45,36 @@ export function Services() {
   }
 
   return (
-    <div className="max-w-full mx-auto my-10">
-      <div
-        style={{ letterSpacing: "-2px" }}
-        className="text-center px-4 lg:px-0"
-      >
-        <h1 className="mx-auto text-5xl font-medium text-black dark:text-white max-w-[675px]">
-          All design, branding and marketing services for you
-        </h1>
-      </div>
-      <div className="flex w-full items-start mt-10 justify-start">
-        <TabCarousel setActiveCategory={setActiveCategory} />
-      </div>
-      {/* <HoverEffect items={projects} /> */}
-      <div className="lg:mt-20 my-10 flex flex-wrap gap-5">
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col lg:flex-row gap-10 lg:gap-10 mb-10"
-          >
-            <Card
-              title={item.title}
-              description={item.description}
-              imageUrl={item.image}
-              cursor2={item.cursor2}
-              cursor1={item.cursor1}
-            />
-          </div>
-        ))}
+    <div className="w-full flex items-center justify-center">
+      <div className="my-10">
+        <div
+          style={{ letterSpacing: "-2px" }}
+          className="text-center px-4 lg:px-0"
+        >
+          <h1 className="mx-auto text-5xl font-medium text-black dark:text-white max-w-[675px]">
+            All design, branding and marketing services for you
+          </h1>
+        </div>
+        <div className="flex w-full items-start mt-10 justify-start">
+          <TabCarousel setActiveCategory={setActiveCategory} />
+        </div>
+        {/* <HoverEffect items={projects} /> */}
+        <div className="lg:mt-20 my-10 flex flex-wrap gap-8">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-col lg:flex-row gap-10 lg:gap-10 mb-10"
+            >
+              <Card
+                title={item.title}
+                description={item.description}
+                imageUrl={item.image}
+                cursor2={item.cursor2}
+                cursor1={item.cursor1}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
