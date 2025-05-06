@@ -21,11 +21,11 @@ export default function ImageScroll({ className }: { className?: string }) {
   };
   return (
     <div
-      className={`flex flex-col overflow-hidden ${className} flex flex-col overflow-hidden ${className} -mt-[15vh] sm:-mt-[20vh] md:-mt-[25vh] lg:-mt-[30vh]`}
+      className={`flex flex-col overflow-hidden ${className} flex flex-col overflow-hidden ${className}   -mt-5 md:-mt-[25vh] lg:-mt-[30vh]`}
     >
       <ContainerScroll
         titleComponent={
-          <div className="flex flex-col items-center mb-20 -mt-5">
+          <div className="flex flex-col items-center md:mb-20 -mt-5">
             <motion.div
               className="flex flex-col sm:flex-row gap-4"
               variants={itemVariants}

@@ -15,22 +15,23 @@ const Card = ({
   description: string;
 }) => {
   return (
-    <div className="flex flex-col items-start justify-center gap-4 w-full max-w-md">
-      <div className="w-full h-[476px] relative overflow-hidden rounded-2xl">
+    <div className="flex flex-col items-start justify-center gap-4 w-full max-w-md mx-auto">
+      <div className="w-full h-[300px] sm:h-[400px] md:h-[476px] relative overflow-hidden rounded-2xl">
         <Image
           src={imageUrl}
           alt={title}
           fill
           className="object-cover rounded-2xl hover:scale-110 transition-transform duration-300"
           priority
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
         />
       </div>
-      <h3 className="font-semibold text-xl">{title}</h3>
+      <h3 className="font-semibold text-lg sm:text-xl">{title}</h3>
       <p
         style={{
           lineHeight: "170%",
         }}
-        className="text-black text-[16px] font-normal"
+        className="text-black text-[14px] sm:text-[16px] font-normal"
       >
         {description}
       </p>
@@ -58,13 +59,13 @@ export default function PortfolioPage() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
           style={{ letterSpacing: "-2px" }}
-          className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black mb-12"
+          className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black mb-12 ml-3 sm:ml-0"
         >
           Our work is not just a preview, but is present in the real world!
         </motion.h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ml-8 sm:ml-0">
         {portfolios.map((item, index) => (
           <motion.div
             key={item.id}

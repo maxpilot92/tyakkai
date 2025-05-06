@@ -34,14 +34,17 @@ export default function Offering() {
               height={6000}
               className="object-cover"
             />
-            <div className="bg-white absolute rounded-full px-5 py-3 z-10 bottom-20 left-10 font-[550]">
+            <div className="bg-white absolute rounded-full px-3 py-1 md:px-5 md:py-3 z-10 bottom-[70px] md:bottom-20 left-10 font-[550]">
               Diwakar Bhatt
             </div>
-            <div className="bg-white absolute rounded-full px-5 py-3 z-10 bottom-7 left-10 font-[550]">
+            <div className="bg-white absolute rounded-full px-3 py-1 md:px-5 md:py-3  z-10 bottom-8 md:bottom-7 left-10 font-[550]">
               Digital Marketing Expert
             </div>
 
-            <MoveEffect imageUrl={Cursor} className="top-80 right-20 " />
+            <MoveEffect
+              imageUrl={Cursor}
+              className="top-36 right-0 md:top-80 md:right-20 "
+            />
           </div>
         </div>
 

@@ -17,6 +17,8 @@ import { Category } from "@/types/Category";
 import { Portfolio } from "@/types/Portfolio";
 import PortfolioPage from "./Portfolio";
 import usePortfolioStore from "@/store/PortfolioStore";
+import { Testimonial } from "@/types/Testimonial";
+import useTestimonialStore from "@/store/TestimonialStore";
 
 const cormorantFont = Cormorant({
   subsets: ["latin"],
@@ -27,14 +29,17 @@ export default function HeroSection({
   services,
   serviceCategories,
   portfolio,
+  testimonials,
 }: {
   services?: Service[];
   serviceCategories?: Category[];
   portfolio?: Portfolio[];
+  testimonials?: Testimonial[];
 }) {
   const { setServices } = useServiceStore();
   const { setServiceCategory } = useServiceCategoryStore();
   const { setPortfolio } = usePortfolioStore();
+  const { setTestimonial } = useTestimonialStore();
 
   useEffect(() => {
     if (services) {
@@ -56,6 +61,12 @@ export default function HeroSection({
       setPortfolio(portfolio);
     }
   }, []);
+
+  useEffect(() => {
+    if (testimonials) {
+      setTestimonial(testimonials);
+    }
+  }, [testimonials, setPortfolio]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -88,7 +99,7 @@ export default function HeroSection({
         height: "130vh",
         marginBottom: "250px",
       }}
-      className="rounded-4xl mx-10"
+      className="rounded-4xl md:mx-10"
     >
       <motion.section
         className="min-h-[70vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-hidden mx-10  mb-10 lg:mb-20"

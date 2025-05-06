@@ -45,36 +45,34 @@ export function Services() {
   }
 
   return (
-    <div className="w-full flex items-center justify-center">
-      <div className="my-10">
-        <div
-          style={{ letterSpacing: "-2px" }}
-          className="text-center px-4 lg:px-0"
-        >
-          <h1 className="mx-auto text-5xl font-medium text-black dark:text-white max-w-[675px]">
-            All design, branding and marketing services for you
-          </h1>
-        </div>
-        <div className="flex w-full items-start mt-10 justify-start">
-          <TabCarousel setActiveCategory={setActiveCategory} />
-        </div>
-        {/* <HoverEffect items={projects} /> */}
-        <div className="lg:mt-20 my-10 flex flex-wrap gap-8">
-          {data.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col lg:flex-row gap-10 lg:gap-10 mb-10"
-            >
-              <Card
-                title={item.title}
-                description={item.description}
-                imageUrl={item.image}
-                cursor2={item.cursor2}
-                cursor1={item.cursor1}
-              />
-            </div>
-          ))}
-        </div>
+    <div className="w-full mx-auto my-10">
+      <div
+        style={{ letterSpacing: "-2px" }}
+        className="text-center px-4 lg:px-0"
+      >
+        <h1 className="mx-auto text-5xl font-medium text-black dark:text-white max-w-[675px]">
+          All design, branding and marketing services for you
+        </h1>
+      </div>
+      <div className="flex w-full items-start mt-10 justify-start">
+        <TabCarousel setActiveCategory={setActiveCategory} />
+      </div>
+      {/* <HoverEffect items={projects} /> */}
+      <div className="lg:mt-20 my-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center">
+        {data.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col lg:flex-row gap-10 lg:gap-10 mb-10"
+          >
+            <Card
+              title={item.title}
+              description={item.description}
+              imageUrl={item.image}
+              cursor2={item.cursor2}
+              cursor1={item.cursor1}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -94,16 +92,16 @@ function Card({
   cursor2?: string;
 }) {
   return (
-    <div className="bg-[#faf0e6] rounded-2xl h-[490px] w-[400px]">
-      <div className="py-[40px] px-[30px] flex flex-col gap-8">
+    <div className="bg-[#faf0e6] mx-auto rounded-2xl h-auto md:h-[490px] w-full sm:w-[350px] md:w-[400px]">
+      <div className="py-6 md:py-[40px] px-5 md:px-[30px] flex flex-col gap-6 md:gap-8">
         <h2
           style={{ letterSpacing: "-0.08em" }}
-          className="text-4xl font-[550] leading-snug flex items-center justify-center text-[#000000] text-center"
+          className="text-2xl md:text-4xl font-[550] leading-snug flex items-center justify-center text-[#000000] text-center"
         >
           {title}
         </h2>
 
-        <div className="relative h-[190px] overflow-hidden flex items-center justify-center w-full">
+        <div className="relative h-[150px] md:h-[190px] overflow-hidden flex items-center justify-center w-full">
           <Image
             src={
               imageUrl ||
@@ -114,15 +112,17 @@ function Card({
             height={400}
             className="object-cover"
           />
-          <MoveEffect
-            imageUrl={cursor1!}
-            orientation="left"
-            className="top-28 left-16"
-          />
-          <MoveEffect imageUrl={cursor2!} className="right-0" />
+          {cursor1 && (
+            <MoveEffect
+              imageUrl={cursor1}
+              orientation="left"
+              className="top-20 md:top-28 left-8 md:left-16"
+            />
+          )}
+          {cursor2 && <MoveEffect imageUrl={cursor2} className="right-0" />}
         </div>
 
-        <p className="text-[#000000] text-sm font-[420] flex justify-center items-center text-center ">
+        <p className="text-[#000000] text-xs md:text-sm font-[420] flex justify-center items-center text-center">
           {description}
         </p>
       </div>
