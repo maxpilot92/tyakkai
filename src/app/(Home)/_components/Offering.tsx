@@ -6,6 +6,16 @@ import DigitalSolution from "@/../public/digitalSolution.svg";
 import Cursor from "@/../public/cursor.svg";
 import { useEffect, useState } from "react";
 import MoveEffect from "@/components/MoveEffect";
+import { motion } from "framer-motion";
+
+const textVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2, duration: 0.5, ease: "easeOut" },
+  }),
+};
 
 export default function Offering() {
   const [number, setNumber] = useState(0);
@@ -21,11 +31,18 @@ export default function Offering() {
 
     return () => clearInterval(interval);
   }, []);
+
   return (
     <div className="w-full bg-white">
       <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row gap-8 md:gap-16">
-        {/* Left side with image and labels */}
-        <div className="relative w-full md:w-1/2">
+        {/* Left Side */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="relative w-full md:w-1/2"
+        >
           <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-auto md:h-[500px]">
             <Image
               src={DigitalSolution}
@@ -34,83 +51,84 @@ export default function Offering() {
               height={6000}
               className="object-cover"
             />
-            <div className="bg-white absolute rounded-full px-3 py-1 md:px-5 md:py-3 z-10 bottom-[70px] md:bottom-20 left-10 font-[550]">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white absolute rounded-full px-3 py-1 md:px-5 md:py-3 z-10 bottom-[70px] md:bottom-20 left-10 font-[550]"
+            >
               Diwakar Bhatt
-            </div>
-            <div className="bg-white absolute rounded-full px-3 py-1 md:px-5 md:py-3  z-10 bottom-8 md:bottom-7 left-10 font-[550]">
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-white absolute rounded-full px-3 py-1 md:px-5 md:py-3 z-10 bottom-8 md:bottom-7 left-10 font-[550]"
+            >
               Digital Marketing Expert
-            </div>
+            </motion.div>
 
             <MoveEffect
               imageUrl={Cursor}
-              className="top-36 right-0 md:top-80 md:right-20 "
+              className="top-36 right-0 md:top-80 md:right-20"
             />
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right side with text content */}
-        <div className="w-full md:w-1/2 flex flex-col gap-8">
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+        {/* Right Side */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="w-full md:w-1/2 flex flex-col gap-8"
+        >
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold leading-tight"
+          >
             Unlimited Digital Solution
             <br />
             Whenever You Need
-          </h2>
+          </motion.h2>
 
           <div className="space-y-8">
-            {/* Feature 1 */}
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 border-[0.5px] shadow-md bg-white rounded-xl flex items-center justify-center">
-                <Zap className="w-5 h-5 text-orange-500" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">
-                  Tailored Strategies for Maximum Impact
-                </h3>
-                <p className="text-gray-600">
-                  We craft personalized digital marketing plans—​from SEO and
-                  content marketing to social media management—designed to align
-                  with your brand&apos;s unique goals and resonate with your
-                  target audience.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 border-[0.5px] shadow-md bg-white rounded-xl flex items-center justify-center">
-                <User className="w-5 h-5 text-black" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">
-                  Expert Team Dedicated to Your Success
-                </h3>
-                <p className="text-gray-600">
-                  Our team of seasoned content creators, marketers, and
-                  strategists brings years of experience to the table, ensuring
-                  innovative solutions that drive real results.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 border-[0.5px] shadow-md bg-white rounded-xl flex items-center justify-center">
-                <Clock className="w-5 h-5 text-purple-500" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">
-                  Data-Driven Approach for Tangible Results
-                </h3>
-                <p className="text-gray-600">
-                  We focus on delivering measurable outcomes—like increased
-                  website traffic, higher engagement, and improved
-                  conversions—by leveraging analytics and continuous
-                  optimization.
-                </p>
-              </div>
-            </div>
+            {[
+              {
+                icon: <Zap className="w-5 h-5 text-orange-500" />,
+                title: "Tailored Strategies for Maximum Impact",
+                text: `We craft personalized digital marketing plans—​from SEO and content marketing to social media management—designed to align with your brand's unique goals and resonate with your target audience.`,
+              },
+              {
+                icon: <User className="w-5 h-5 text-black" />,
+                title: "Expert Team Dedicated to Your Success",
+                text: `Our team of seasoned content creators, marketers, and strategists brings years of experience to the table, ensuring innovative solutions that drive real results.`,
+              },
+              {
+                icon: <Clock className="w-5 h-5 text-purple-500" />,
+                title: "Data-Driven Approach for Tangible Results",
+                text: `We focus on delivering measurable outcomes—like increased website traffic, higher engagement, and improved conversions—by leveraging analytics and continuous optimization.`,
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                variants={textVariant}
+                viewport={{ once: true }}
+                className="flex gap-4"
+              >
+                <div className="flex-shrink-0 w-10 h-10 border-[0.5px] shadow-md bg-white rounded-xl flex items-center justify-center">
+                  {item.icon}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-gray-600">{item.text}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
