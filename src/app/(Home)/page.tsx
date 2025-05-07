@@ -7,12 +7,14 @@ import { getTestimonials } from "@/utils/getTestimonial";
 import { getBlogs } from "@/utils/getBlogs";
 
 export default async function Home() {
-  const services = await getServices();
-  const serviceCategories = await getCategories("service");
-  const portfolio = await getPortfolio();
-  const testimonials = await getTestimonials();
-  const blog = await getBlogs();
-  console.log("blog", blog);
+  const [services, serviceCategories, portfolio, testimonials, blog] =
+    await Promise.all([
+      getServices(),
+      getCategories("service"),
+      getPortfolio(),
+      getTestimonials(),
+      getBlogs(),
+    ]);
   return (
     <div>
       <Navbar />
