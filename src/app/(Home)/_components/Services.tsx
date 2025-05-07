@@ -18,22 +18,7 @@ export interface Service {
   cursor2?: string;
   Category: Category;
 }
-const textVariant = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.2, duration: 0.5, ease: "easeOut" },
-  }),
-};
 
-const containerVariant = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.3 },
-  },
-};
 export function Services() {
   const { services } = useServiceStore();
   const [data, setData] = useState<Service[]>([]);
@@ -62,41 +47,22 @@ export function Services() {
 
   return (
     <div className="w-full mx-auto my-10">
-      <motion.div
+      <div
         style={{ letterSpacing: "-2px" }}
         className="text-center px-4 lg:px-0"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
       >
         <h1 className="mx-auto text-5xl font-medium text-black dark:text-white max-w-[675px]">
           All design, branding and marketing services for you
         </h1>
-      </motion.div>
-
-      <motion.div
-        className="flex w-full items-start mt-10 justify-start"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
+      </div>
+      <div className="flex w-full items-start mt-10 justify-start">
         <TabCarousel setActiveCategory={setActiveCategory} />
-      </motion.div>
-
-      {/* Cards section */}
-      <motion.div
-        className="lg:mt-20 my-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center"
-        initial="hidden"
-        whileInView="visible"
-        variants={containerVariant}
-        viewport={{ once: true }}
-      >
+      </div>
+      {/* <HoverEffect items={projects} /> */}
+      <div className="lg:mt-20 my-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center">
         {data.map((item, index) => (
-          <motion.div
+          <div
             key={index}
-            variants={textVariant}
             className="flex flex-col lg:flex-row gap-10 lg:gap-10 mb-10"
           >
             <Card
@@ -106,9 +72,9 @@ export function Services() {
               cursor2={item.cursor2}
               cursor1={item.cursor1}
             />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
