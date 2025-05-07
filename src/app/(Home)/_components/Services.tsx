@@ -5,6 +5,7 @@ import TabCarousel from "@/components/TabCarousel";
 import { useEffect, useState } from "react";
 import useServiceStore from "@/store/ServiceStore";
 import { Category } from "@/types/Category";
+import { motion } from "framer-motion";
 
 export interface Service {
   id: string;
@@ -77,26 +78,27 @@ export function Services() {
     </div>
   );
 }
-
-function Card({
-  title,
-  description,
-  imageUrl,
-  cursor1,
-  cursor2,
-}: {
+type CardProps = {
   title: string;
   description: string;
   imageUrl?: string;
   cursor1?: string;
   cursor2?: string;
-}) {
+};
+function Card({ title, description, imageUrl, cursor1, cursor2 }: CardProps) {
   return (
-    <div className="bg-[#faf0e6] mx-auto rounded-2xl h-auto md:h-[490px] w-full sm:w-[350px] md:w-[400px]">
-      <div className="py-6 md:py-[40px] px-5 md:px-[30px] flex flex-col gap-6 md:gap-8">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      whileHover={{ scale: 1.03 }}
+      viewport={{ once: true }}
+      className="bg-[#faf0e6] mx-auto rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 h-auto md:h-[490px] w-full sm:w-[350px] md:w-[400px]"
+    >
+      <div className="py-6 md:py-10 px-5 md:px-8 flex flex-col gap-6 md:gap-8">
         <h2
           style={{ letterSpacing: "-0.08em" }}
-          className="text-2xl md:text-4xl font-[550] leading-snug flex items-center justify-center text-[#000000] text-center"
+          className="text-2xl md:text-4xl font-semibold leading-snug text-center text-black"
         >
           {title}
         </h2>
@@ -107,10 +109,10 @@ function Card({
               imageUrl ||
               "https://res.cloudinary.com/dipagek5z/image/upload/v1745829714/adminportal/yepjsgefkswll05luoas.jpg"
             }
-            alt="Image"
+            alt="Card Image"
             width={400}
             height={400}
-            className="object-cover"
+            className="object-cover rounded-lg"
           />
           {cursor1 && (
             <MoveEffect
@@ -122,10 +124,10 @@ function Card({
           {cursor2 && <MoveEffect imageUrl={cursor2} className="right-0" />}
         </div>
 
-        <p className="text-[#000000] text-xs md:text-sm font-[420] flex justify-center items-center text-center">
+        <p className="text-black text-xs md:text-sm font-medium text-center">
           {description}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }

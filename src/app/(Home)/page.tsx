@@ -4,14 +4,15 @@ import { getServices } from "@/utils/getServices";
 import { getCategories } from "@/utils/getCategories";
 import { getPortfolio } from "@/utils/getPortfolio";
 import { getTestimonials } from "@/utils/getTestimonial";
+import { getBlogs } from "@/utils/getBlogs";
 
 export default async function Home() {
   const services = await getServices();
   const serviceCategories = await getCategories("service");
   const portfolio = await getPortfolio();
   const testimonials = await getTestimonials();
-  console.log("Testimonial response:", testimonials);
-
+  const blog = await getBlogs();
+  console.log("blog", blog);
   return (
     <div>
       <Navbar />
@@ -21,6 +22,7 @@ export default async function Home() {
           serviceCategories={serviceCategories}
           portfolio={portfolio}
           testimonials={testimonials}
+          blog={blog}
         />
         {/* <ImageScroll /> */}
       </div>

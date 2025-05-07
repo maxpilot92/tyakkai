@@ -10,34 +10,29 @@ type FAQItem = {
 
 const faqData: FAQItem[] = [
   {
-    question: "What features does GravityX offer?",
+    question: "What services does Tyakkai Solutions offer?",
     answer:
-      "GravityX offers a comprehensive suite of features including advanced analytics, real-time collaboration tools, customizable dashboards, automated reporting, integration with popular third-party services, and dedicated customer support. Our platform is designed to streamline your workflow and enhance productivity across your organization.",
+      "Tyakkai Solutions provides a comprehensive range of digital marketing services, including SEO optimization, social media management, content marketing, Google Ads, and graphic & web design.",
   },
   {
-    question: "How can GravityX benefit my organization?",
+    question: "Where is Tyakkai Solutions located?",
     answer:
-      "GravityX can transform your organization by reducing manual processes, improving data visibility, enabling better decision-making, and fostering collaboration. Our clients typically see a 30% increase in productivity and a significant reduction in operational costs within the first three months of implementation.",
+      "Tyakkai Solutions is based in Kathmandu, Nepal, specifically at KMC-10, Shankhamul.",
   },
   {
-    question: "Is GravityX suitable for small businesses or large enterprises?",
+    question: "How can I contact Tyakkai Solutions?",
     answer:
-      "GravityX is designed to scale with your business needs. We offer tailored solutions for organizations of all sizes, from startups to Fortune 500 companies. Our flexible pricing model ensures you only pay for what you need, making it accessible for small businesses while providing the robust capabilities required by large enterprises.",
+      "You can reach out via phone at 015920722 or email at tyakkaisolutions@gmail.com. They also offer a contact form on their website for inquiries.",
   },
   {
-    question: "Is GravityX customizable to fit our specific needs?",
+    question: "What industries has Tyakkai Solutions worked with?",
     answer:
-      "Absolutely. GravityX is highly customizable with modular components that can be tailored to your specific industry requirements. Our professional services team works closely with you to configure the platform to match your unique workflows, branding, and business processes. We also offer an API for deeper integrations with your existing systems.",
+      "Tyakkai Solutions has collaborated with various sectors, including education (e.g., Focus Academy, Moves International,  AAIC, etc), and other companies like Liberty Microlife, Dhanwantari Ayurvedic Hospital, Lawanya International and many more. ",
   },
   {
-    question: "How secure is the data stored on GravityX?",
+    question: "Does Tyakkai Solutions provide SEO services in Nepal?",
     answer:
-      "Security is our top priority. GravityX employs end-to-end encryption, regular security audits, and follows industry best practices for data protection. We are compliant with major regulations including GDPR, HIPAA, and SOC 2. All data is stored in secure, redundant data centers with 99.9% uptime guarantee.",
-  },
-  {
-    question: "GravityX employs end-to-end encryption, ensuring that data.",
-    answer:
-      "Our end-to-end encryption ensures that your data is protected at every stage - during transmission, processing, and storage. We use AES-256 encryption, the same standard used by financial institutions and government agencies. Additionally, we implement strict access controls, regular security updates, and continuous monitoring to protect against potential threats.",
+      "Yes, Tyakkai Solutions specializes in SEO optimization services tailored for businesses in Nepal, aiming to enhance online visibility and search engine rankings.",
   },
 ];
 

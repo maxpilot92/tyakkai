@@ -40,7 +40,7 @@ export const ContainerScroll = ({
       ref={containerRef}
     >
       <div
-        className="py-10 w-full relative"
+        className="py-10  relative"
         style={{
           perspective: "1000px",
         }}

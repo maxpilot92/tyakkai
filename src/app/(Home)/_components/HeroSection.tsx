@@ -19,6 +19,8 @@ import PortfolioPage from "./Portfolio";
 import usePortfolioStore from "@/store/PortfolioStore";
 import { Testimonial } from "@/types/Testimonial";
 import useTestimonialStore from "@/store/TestimonialStore";
+import { Blog } from "@/types/Blog";
+import useBlogStore from "@/store/BlogStore";
 
 const cormorantFont = Cormorant({
   subsets: ["latin"],
@@ -30,16 +32,19 @@ export default function HeroSection({
   serviceCategories,
   portfolio,
   testimonials,
+  blog,
 }: {
   services?: Service[];
   serviceCategories?: Category[];
   portfolio?: Portfolio[];
   testimonials?: Testimonial[];
+  blog?: Blog[];
 }) {
   const { setServices } = useServiceStore();
   const { setServiceCategory } = useServiceCategoryStore();
   const { setPortfolio } = usePortfolioStore();
   const { setTestimonial } = useTestimonialStore();
+  const { setBlog } = useBlogStore();
 
   useEffect(() => {
     if (services) {
@@ -67,6 +72,12 @@ export default function HeroSection({
       setTestimonial(testimonials);
     }
   }, [testimonials, setPortfolio]);
+
+  useEffect(() => {
+    if (blog) {
+      setBlog(blog);
+    }
+  }, [blog, setBlog]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -186,6 +197,15 @@ export default function HeroSection({
           <Offering />
           {/* <Scrolling /> */}
           <Services />
+          <div className="z-20 text-center px-4">
+            <h2 className="text-4xl font-bold tracking-tight">
+              Explore Our Latest Blogs
+            </h2>
+            <p className="mt-2 text-lg text-neutral-400 max-w-xl mx-auto">
+              Discover insights, tips, and trends across tech, design, and
+              productivity.
+            </p>
+          </div>
           <HorizontalScrollingCarousel />
           {/* <HeroParallaxDemo /> */}
           <PortfolioPage />
