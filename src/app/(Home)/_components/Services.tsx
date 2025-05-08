@@ -77,7 +77,7 @@ export function Services() {
 
   return (
     <div className="w-full mx-10 my-10">
-      <div className="flex items-center justify-center ">
+      <div className="flex flex-col items-start justify-center ">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +86,17 @@ export function Services() {
           style={{ letterSpacing: "-2px" }}
           className=" text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
         >
-          All design, branding and marketing services for you
+          All design, branding &
+        </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          style={{ letterSpacing: "-2px" }}
+          className=" text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
+        >
+          Marketing services for you
         </motion.h1>
       </div>
 

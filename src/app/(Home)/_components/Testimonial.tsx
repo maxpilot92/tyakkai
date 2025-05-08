@@ -37,20 +37,20 @@ export default function TestimonialCarousel() {
 
   const currentTestimonial = testimonials[currentIndex];
 
-  const handlePrev = () => {
-    setDirection(-1);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
-  };
+  // const handlePrev = () => {
+  //   setDirection(-1);
+  //   setCurrentIndex((prevIndex) =>
+  //     prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+  //   );
+  // };
 
-  const handleNext = () => {
-    setDirection(1);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  };
+  // const handleNext = () => {
+  //   setDirection(1);
+  //   setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  // };
 
   return (
-    <div className="w-full h-[590px] max-w-full mx-auto relative overflow-hidden flex flex-col bg-[url('/testimonialBg.svg')] bg-cover bg-center bg-no-repeat">
+    <div className="w-full h-[590px] max-w-[1150px] mx-auto relative overflow-hidden flex flex-col bg-[url('/testimonialBg.svg')] bg-cover bg-center bg-no-repeat">
       {/* Testimonial content */}
       <div className="relative h-[300px] flex items-center justify-center mt-36">
         <AnimatePresence mode="wait" initial={false} custom={direction}>
@@ -64,7 +64,7 @@ export default function TestimonialCarousel() {
             className="absolute w-full px-4"
           >
             <blockquote className="text-center">
-              <p className="text-2xl md:text-3xl font-medium text-gray-900 mb-8 px-4 md:px-12">
+              <p className="text-2xl md:text-3xl font-medium text-gray-900 mb-8 px-4">
                 &quot;{currentTestimonial.description}&quot;
               </p>
 
@@ -107,7 +107,7 @@ export default function TestimonialCarousel() {
       </div> */}
 
       {/* Navigation arrows */}
-      <button
+      {/* <button
         onClick={handlePrev}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md hover:bg-white"
         aria-label="Previous testimonial"
@@ -144,7 +144,7 @@ export default function TestimonialCarousel() {
         >
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
-      </button>
+      </button> */}
     </div>
   );
 }

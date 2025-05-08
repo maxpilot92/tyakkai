@@ -51,7 +51,7 @@ export default function PortfolioPage() {
   }, [portfolio]);
 
   return (
-    <section className="container mx-auto px-4 pb-16 lg:mb-4 lg:w-[1000px]">
+    <section className="container mx-auto px-4  lg:mb-4 lg:w-[1500px]">
       <div className="flex items-center justify-center ">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
@@ -65,7 +65,7 @@ export default function PortfolioPage() {
         </motion.h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-24 ml-8 sm:ml-0">
+      <div className="grid grid-cols-1 md:grid-cols-2  ml-8 sm:ml-0">
         {portfolios.map((item, index) => (
           <motion.div
             key={item.id}
@@ -73,6 +73,7 @@ export default function PortfolioPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+            className="mb-28"
           >
             <Card
               imageUrl={item.screenshots[0].url}

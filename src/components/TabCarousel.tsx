@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useAnimation, AnimationControls } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 import useServiceCategoryStore from "@/store/ServiceCategoryStore";
-import { Category } from "@/types/Category";
+import type { Category } from "@/types/Category";
+import { ChevronRight } from "lucide-react";
 
 export default function TabCarousel({
   setActiveCategory,
@@ -14,10 +15,13 @@ export default function TabCarousel({
   setActiveIndex: (index: number) => void;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const tabsContainerRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const controls: AnimationControls = useAnimation();
+  const controls = useAnimation();
 
   const [activeTab, setActiveTab] = useState<Category[]>([]);
+  // const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
 
   const { serviceCategory } = useServiceCategoryStore();
 
@@ -25,45 +29,132 @@ export default function TabCarousel({
     setActiveTab(serviceCategory);
   }, [serviceCategory]);
 
-  const centerTab = async (index: number) => {
+  const updateArrowVisibility = () => {
+    if (!containerRef.current || !tabsContainerRef.current) return;
+
+    const container = containerRef.current;
+    const tabsContainer = tabsContainerRef.current;
+    const currentX = Number.parseFloat(
+      tabsContainer.style.transform
+        ?.replace("translateX(", "")
+        .replace("px)", "") || "0"
+    );
+    const maxScroll = tabsContainer.scrollWidth - container.offsetWidth;
+
+    // setShowLeftArrow(currentX < 0);
+    setShowRightArrow(-currentX < maxScroll);
+  };
+
+  const scrollToTab = (index: number) => {
     const container = containerRef.current;
     const tab = tabRefs.current[index];
 
     if (container && tab) {
       const containerWidth = container.offsetWidth;
       const tabWidth = tab.offsetWidth;
-      const tabOffset = tab.offsetLeft;
-      const scrollOffset = tabOffset - (containerWidth / 2 - tabWidth / 2);
+      const tabLeft = tab.offsetLeft;
 
-      await controls.start({
-        x: -scrollOffset,
-        transition: {
-          type: "spring",
-          stiffness: 300,
-          damping: 30,
-          mass: 0.5,
-        },
-      });
+      // Calculate the center position
+      const scrollPosition = tabLeft - containerWidth / 2 + tabWidth / 2;
+
+      controls
+        .start({
+          x: -Math.max(0, scrollPosition),
+          transition: {
+            type: "tween", // Change to tween for smoother motion
+            ease: "easeInOut",
+            duration: 0.35,
+          },
+        })
+        .then(updateArrowVisibility);
     }
+  };
+
+  // const scrollLeft = () => {
+  //   if (!containerRef.current || !tabsContainerRef.current) return;
+
+  //   const container = containerRef.current;
+  //   const currentX = Number.parseFloat(
+  //     tabsContainerRef.current.style.transform
+  //       ?.replace("translateX(", "")
+  //       .replace("px)", "") || "0"
+  //   );
+  //   const scrollAmount = container.offsetWidth * 0.6; // Reduced scroll amount for smoother transitions
+
+  //   controls
+  //     .start({
+  //       x: Math.min(0, currentX + scrollAmount),
+  //       transition: {
+  //         type: "tween",
+  //         ease: "easeInOut",
+  //         duration: 0.35,
+  //       },
+  //     })
+  //     .then(updateArrowVisibility);
+  // };
+
+  const scrollRight = () => {
+    if (!containerRef.current || !tabsContainerRef.current) return;
+
+    const container = containerRef.current;
+    const tabsContainer = tabsContainerRef.current;
+    const currentX = Number.parseFloat(
+      tabsContainer.style.transform
+        ?.replace("translateX(", "")
+        .replace("px)", "") || "0"
+    );
+    const scrollAmount = container.offsetWidth * 0.6; // Reduced scroll amount for smoother transitions
+    const maxScroll = tabsContainer.scrollWidth - container.offsetWidth;
+
+    controls
+      .start({
+        x: Math.max(-maxScroll, currentX - scrollAmount),
+        transition: {
+          type: "tween",
+          ease: "easeInOut",
+          duration: 0.35,
+        },
+      })
+      .then(updateArrowVisibility);
   };
 
   useEffect(() => {
     if (activeTab.length > 0) {
-      centerTab(activeIndex);
+      scrollToTab(activeIndex);
     }
   }, [activeTab, activeIndex]);
 
+  useEffect(() => {
+    // Initialize arrow visibility
+    if (activeTab.length > 0) {
+      updateArrowVisibility();
+    }
+
+    // Add resize listener to update arrows when window size changes
+    const handleResize = () => {
+      updateArrowVisibility();
+      scrollToTab(activeIndex);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [activeTab, activeIndex]);
+
   return (
-    <div className="w-full px-4 relative ">
+    <div className="w-full relative">
       <div
         ref={containerRef}
-        className="overflow-hidden w-full scrollbar-hide flex justify-center items-center"
+        className="overflow-hidden w-[600px] scrollbar-hide"
       >
         <motion.div
-          className="flex gap-3 px-2 py-4"
+          ref={tabsContainerRef}
+          className="flex gap-3 px-4 py-4 w-max"
           animate={controls}
           initial={{ x: 0 }}
-          style={{ willChange: "transform" }}
+          style={{
+            willChange: "transform",
+            transform: "translateZ(0)", // Add hardware acceleration
+          }}
         >
           {activeTab.map((tab, i) => (
             <motion.div
@@ -73,47 +164,37 @@ export default function TabCarousel({
               }}
               onClick={() => {
                 setActiveIndex(i);
-                centerTab(i);
+                scrollToTab(i);
                 if (setActiveCategory) {
                   setActiveCategory(tab.name);
                 }
               }}
-              whileHover={{ scale: activeIndex === i ? 1 : 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: activeIndex === i ? 1 : 1.03 }} // Reduced scale for smoother hover
+              whileTap={{ scale: 0.98 }} // Less aggressive scale on tap
+              transition={{ type: "tween", duration: 0.2 }} // Add smoother transition
               className={`
                 min-w-max px-6 py-3 cursor-pointer rounded-full text-center
-                transition-all duration-1000 ease-out
-                border border-transparent
+                transition-all duration-200 ease-out
                 ${
                   activeIndex === i
                     ? "bg-[#ffc700] text-white font-semibold shadow-md"
                     : "bg-[#faf0e6] text-gray-700 hover:bg-[#ffc700]/20"
                 }
                 relative overflow-hidden
-                group
                 focus:outline-none focus:ring-2 focus:ring-[#ffc700]/50
               `}
               tabIndex={0}
               aria-selected={activeIndex === i}
               role="tab"
+              style={{ transform: "translateZ(0)" }} // Add hardware acceleration
             >
-              {/* Active indicator */}
-              {activeIndex === i && (
-                <motion.span
-                  className="absolute inset-0 bg-yellow-500/20 rounded-full"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 1 }}
-                />
-              )}
-
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {tab.name}
                 {activeIndex === i && (
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 500 }}
+                    transition={{ type: "tween", duration: 0.2 }}
                     className="w-2 h-2 bg-white rounded-full"
                   />
                 )}
@@ -123,30 +204,14 @@ export default function TabCarousel({
         </motion.div>
       </div>
 
-      {/* Navigation Arrows (optional) */}
-      {activeTab.length > 5 && (
-        <>
-          <button
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md z-10"
-            onClick={() =>
-              setActiveIndex(
-                activeIndex > 0 ? activeIndex - 1 : activeTab.length - 1
-              )
-            }
-          >
-            &larr;
-          </button>
-          <button
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md z-10"
-            onClick={() =>
-              setActiveIndex(
-                activeIndex < activeTab.length - 1 ? activeIndex + 1 : 0
-              )
-            }
-          >
-            &rarr;
-          </button>
-        </>
+      {showRightArrow && (
+        <button
+          onClick={scrollRight}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-md p-2 hover:bg-gray-100 transition-all"
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="h-5 w-5 text-gray-700" />
+        </button>
       )}
     </div>
   );

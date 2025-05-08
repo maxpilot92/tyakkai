@@ -4,7 +4,7 @@ import AnimatedButton from "./AnimatedButton";
 
 const Footer = () => {
   return (
-    <footer className=" mx-10">
+    <footer className=" mx-10 ">
       {/* Main footer with dark background */}
       <div className="bg-black text-white rounded-4xl">
         {/* Call to action section */}
@@ -23,23 +23,24 @@ const Footer = () => {
         </div>
 
         {/* Footer content section */}
-        <div className="mx-auto px-6 md:px-12 lg:px-16 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Logo and about */}
-            <div className="md:col-span-1">
-              <p className="text-sm text-gray-400 mb-6">
-                Unlock unlimited digital solutions with Tyakkai.com — from
-                design to SEO, social media, and beyond, request what you need,
-                when you need it.
-              </p>
-              <div className="flex items-center text-sm text-gray-400 mb-2">
-                <MapPin size={16} className="mr-2" /> KMC 10 Sankhamul,
-                Kathmandu
-              </div>
-              <div className="flex items-center text-sm text-gray-400">
-                <Phone size={16} className="mr-2" /> Phone: 01-5920722
-              </div>
+        <div className="flex gap-10 mx-auto px-6 md:px-12 lg:px-16 py-12">
+          <div className="md:col-span-1 w-[40%]">
+            <p className="text-sm text-gray-400 mb-6">
+              Unlock unlimited digital solutions with Tyakkai — from
+              eye-catching design to powerful SEO, impactful social media
+              strategies, and so much more. Request what you need, exactly when
+              you need it — your all-in-one digital partner, ready to deliver
+              results on demand.
+            </p>
+            <div className="flex items-center text-sm text-gray-400 mb-2">
+              <MapPin size={16} className="mr-2" /> KMC 10 Sankhamul, Kathmandu
             </div>
+            <div className="flex items-center text-sm text-gray-400">
+              <Phone size={16} className="mr-2" /> Phone: 01-5920722
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-[60%]">
+            {/* Logo and about */}
 
             {/* Info links */}
             <div>
