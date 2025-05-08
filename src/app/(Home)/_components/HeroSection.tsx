@@ -197,20 +197,24 @@ export default function HeroSection({
           <Offering />
           {/* <Scrolling /> */}
           <Services />
-          <div className="z-20 text-center px-4">
-            <h2 className="text-4xl font-bold tracking-tight">
+          <div className="z-20 text-center px-4 flex items-center justify-center ">
+            <motion.h2
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+              style={{ letterSpacing: "-2px" }}
+              className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
+            >
               Explore Our Latest Blogs
-            </h2>
-            <p className="mt-2 text-lg text-neutral-400 max-w-xl mx-auto">
-              Discover insights, tips, and trends across tech, design, and
-              productivity.
-            </p>
+            </motion.h2>
+            <h2 className="text-4xl font-bold tracking-tight"></h2>
           </div>
           <HorizontalScrollingCarousel />
           {/* <HeroParallaxDemo /> */}
           <PortfolioPage />
           <TestimonialCarousel />
-          <div className="-mx-10">
+          <div className="-mx-10 mb-10">
             <Faq />
             <Footer />
           </div>

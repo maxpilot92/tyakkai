@@ -6,14 +6,15 @@ import { useEffect, useState } from "react";
 import useServiceStore from "@/store/ServiceStore";
 import { Category } from "@/types/Category";
 import { motion } from "framer-motion";
+import useServiceCategoryStore from "@/store/ServiceCategoryStore";
 
 export interface Service {
   id: string;
   title: string;
   description: string;
   image?: string;
-  createdAt: string; // or Date if you parse it
-  updatedAt: string; // or Date if you parse it
+  createdAt: string;
+  updatedAt: string;
   cursor1?: string;
   cursor2?: string;
   Category: Category;
@@ -21,45 +22,83 @@ export interface Service {
 
 export function Services() {
   const { services } = useServiceStore();
+  const { serviceCategory } = useServiceCategoryStore();
   const [data, setData] = useState<Service[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("");
+  const [showList, setShowList] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (services) {
-      setData(services);
+    if (serviceCategory && serviceCategory.length > 0) {
+      const len = serviceCategory.length;
+      const middleIndex = Math.floor(len / 2);
+      const defaultCategory = services[middleIndex + 1]?.Category.name;
+      if (defaultCategory) {
+        setActiveCategory(defaultCategory);
+        setActiveIndex(
+          serviceCategory.findIndex((c) => c.name === defaultCategory)
+        );
+        setShowAll(false);
+      }
     }
-  }, [services]);
+  }, [serviceCategory]);
 
+  // Initial load: limit to 3 unless showAll is true
+  useEffect(() => {
+    if (!activeCategory && services) {
+      if (showAll) {
+        setData(services);
+        setShowList(false);
+      } else if (services.length > 3) {
+        setData(services.slice(0, 3));
+        setShowList(true);
+      } else {
+        setData(services);
+        setShowList(false);
+      }
+    }
+  }, [services, showAll, activeCategory]);
+
+  // Filter by category
   useEffect(() => {
     if (activeCategory) {
-      const filteredData = services?.filter(
+      const filtered = services?.filter(
         (item) => item.Category.name === activeCategory
       );
-      setData(filteredData || []);
-    } else {
-      setData(services);
+      setData(filtered || []);
+      setShowList((filtered?.length || 0) > 3 && !showAll);
     }
-  }, [activeCategory, services]);
+  }, [activeCategory, services, showAll]);
 
-  if (!data) {
-    return <>no data</>;
+  if (!data || data.length === 0) {
+    return <>No services found.</>;
   }
 
   return (
-    <div className="w-full mx-auto my-10">
-      <div
-        style={{ letterSpacing: "-2px" }}
-        className="text-center px-4 lg:px-0"
-      >
-        <h1 className="mx-auto text-5xl font-medium text-black dark:text-white max-w-[675px]">
+    <div className="w-full mx-10 my-10">
+      <div className="flex items-center justify-center ">
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          style={{ letterSpacing: "-2px" }}
+          className=" text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
+        >
           All design, branding and marketing services for you
-        </h1>
+        </motion.h1>
       </div>
+
       <div className="flex w-full items-start mt-10 justify-start">
-        <TabCarousel setActiveCategory={setActiveCategory} />
+        <TabCarousel
+          setActiveCategory={setActiveCategory}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+        />
       </div>
-      {/* <HoverEffect items={projects} /> */}
-      <div className="lg:mt-20 my-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center">
+
+      <div className="lg:mt-20 mb-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center">
         {data.map((item, index) => (
           <div
             key={index}
@@ -75,9 +114,24 @@ export function Services() {
           </div>
         ))}
       </div>
+
+      {showList && !showAll && (
+        <div className="text-center w-full">
+          {/* <button
+            onClick={() => {
+              setShowAll(true);
+              setData(services);
+            }}
+            className="mt-4 text-blue-600 hover:underline font-semibold"
+          >
+            View All Services
+          </button> */}
+        </div>
+      )}
     </div>
   );
 }
+
 type CardProps = {
   title: string;
   description: string;
@@ -85,6 +139,7 @@ type CardProps = {
   cursor1?: string;
   cursor2?: string;
 };
+
 function Card({ title, description, imageUrl, cursor1, cursor2 }: CardProps) {
   return (
     <motion.div

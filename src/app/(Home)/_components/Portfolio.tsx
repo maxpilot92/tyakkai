@@ -51,7 +51,7 @@ export default function PortfolioPage() {
   }, [portfolio]);
 
   return (
-    <section className="container mx-auto px-4 py-16 lg:mb-20 lg:w-[1000px]">
+    <section className="container mx-auto px-4 pb-16 lg:mb-4 lg:w-[1000px]">
       <div className="flex items-center justify-center ">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
@@ -59,13 +59,13 @@ export default function PortfolioPage() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
           style={{ letterSpacing: "-2px" }}
-          className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black mb-12 ml-3 sm:ml-0"
+          className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black mb-20 ml-3 sm:ml-0"
         >
           Our work is not just a preview, but is present in the real world!
         </motion.h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ml-8 sm:ml-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-24 ml-8 sm:ml-0">
         {portfolios.map((item, index) => (
           <motion.div
             key={item.id}

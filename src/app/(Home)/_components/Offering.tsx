@@ -91,7 +91,7 @@ export default function Offering() {
             Whenever You Need
           </motion.h2>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {[
               {
                 icon: <Zap className="w-5 h-5 text-orange-500" />,

@@ -46,7 +46,12 @@ export default function Faq() {
   return (
     <div className=" w-full bg-gray-50 rounded-lg p-6 px-14 ">
       <div className="text-center px-4 lg:px-0">
-        <h1 className="mx-auto text-5xl font-medium text-black dark:text-white max-w-[550px] pt-28">
+        <h1
+          style={{
+            letterSpacing: "-2px",
+          }}
+          className="mx-auto leading-tight text-[56px] font-medium text-black dark:text-white max-w-[600px] pt-24 pb-16"
+        >
           Have a question? We are here to answer.
         </h1>
       </div>

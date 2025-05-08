@@ -5,7 +5,8 @@ import Image from "next/image";
 import Liberty from "@/../public/logo/liberty.svg";
 import Dhanwantari from "@/../public/logo/dhanwantari.svg";
 import Moves from "@/../public/logo/moves.svg";
-import SubmitToPyramid from "@/../public/logo/submit-to-pyramid.svg";
+// import SubmitToPyramid from "@/../public/logo/submit-to-pyramid.svg";
+import Chayyaa from "@/../public/logo/chhayaa.svg";
 import GuruMantra from "@/../public/logo/Gurumantra.svg";
 import WhiteHouse from "@/../public/logo/Whitehouse.svg";
 import Tesla from "@/../public/logo/Tesla.svg";
@@ -16,7 +17,7 @@ const reviews = [
   { img: Liberty, alt: "Liberty" },
   { img: Dhanwantari, alt: "Dhanwantari" },
   { img: Moves, alt: "Moves" },
-  { img: SubmitToPyramid, alt: "Submit to Pyramid" },
+  { img: Chayyaa, alt: "Chayyaa" },
   { img: GuruMantra, alt: "Guru Mantra" },
   { img: WhiteHouse, alt: "White House" },
   { img: Tesla, alt: "Tesla" },
@@ -36,7 +37,7 @@ export function MarqueeLogo() {
             key={idx}
             className={`flex flex-shrink-0 items-center justify-center px-6 ${LOGO_CONTAINER}`}
           >
-            <div className="relative h-full w-full">
+            <div className="relative  h-30 w-30">
               <Image src={img} alt={alt} fill className="object-contain" />
             </div>
           </div>
