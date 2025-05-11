@@ -44,7 +44,7 @@ export default function Faq() {
   };
 
   return (
-    <div className=" w-full bg-gray-50 rounded-lg p-6 px-14 ">
+    <div className=" w-full bg-gray-50 rounded-lg p-6 px-[125px] ">
       <div className="text-center px-4 lg:px-0">
         <h1
           style={{

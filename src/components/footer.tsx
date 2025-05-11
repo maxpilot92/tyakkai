@@ -4,11 +4,11 @@ import AnimatedButton from "./AnimatedButton";
 
 const Footer = () => {
   return (
-    <footer className=" mx-10 ">
+    <footer className=" mx-[125px] mb-10">
       {/* Main footer with dark background */}
       <div className="bg-black text-white rounded-4xl">
         {/* Call to action section */}
-        <div className="mx-auto px-6 md:px-12 lg:px-16 pt-16 pb-8 border-b border-gray-800 flex justify-between items-center">
+        <div className="mx-auto px-6 md:px-12 lg:px-16 pt-16 pb-8 border-b border-gray-800 flex justify-between items-center flex-col md:flex-row">
           <div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-400 mb-2">
               Ready to Transform Your

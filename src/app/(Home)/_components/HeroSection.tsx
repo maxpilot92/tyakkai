@@ -110,10 +110,10 @@ export default function HeroSection({
         height: "130vh",
         marginBottom: "250px",
       }}
-      className="rounded-4xl md:mx-10 "
+      className="rounded-4xl md:mx-10 -mr-10"
     >
       <motion.section
-        className="min-h-[70vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-x-hidden mb-10 lg:mb-20"
+        className="min-h-[70vh] flex flex-col justify-center items-center rounded-4xl px-4 md:px-8 lg:px-16 relative overflow-x-hidden mb-10 lg:mb-20 "
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -190,7 +190,7 @@ export default function HeroSection({
       </motion.section>
       <ImageScroll />
       <div className="relative w-full bg-background">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-screen mx-auto">
           <MarqueeLogo />
           <ShortStory />
           <hr />
@@ -204,7 +204,7 @@ export default function HeroSection({
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
               style={{ letterSpacing: "-2px" }}
-              className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
+              className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0 mt-8"
             >
               Explore Our Latest Blogs
             </motion.h2>

@@ -1,12 +1,11 @@
 "use client";
-import Image from "next/image";
-import MoveEffect from "@/components/MoveEffect";
 import TabCarousel from "@/components/TabCarousel";
 import { useEffect, useState } from "react";
 import useServiceStore from "@/store/ServiceStore";
-import { Category } from "@/types/Category";
+import type { Category } from "@/types/Category";
 import { motion } from "framer-motion";
 import useServiceCategoryStore from "@/store/ServiceCategoryStore";
+import AnimatedButton from "@/components/AnimatedButton";
 
 export interface Service {
   id: string;
@@ -66,7 +65,14 @@ export function Services() {
       const filtered = services?.filter(
         (item) => item.Category.name === activeCategory
       );
-      setData(filtered || []);
+
+      if (showAll) {
+        setData(filtered || []);
+      } else {
+        // Limit to 3 services when showAll is false
+        setData((filtered || []).slice(0, 3));
+      }
+
       setShowList((filtered?.length || 0) > 3 && !showAll);
     }
   }, [activeCategory, services, showAll]);
@@ -76,8 +82,8 @@ export function Services() {
   }
 
   return (
-    <div className="w-full mx-10 my-10">
-      <div className="flex flex-col items-start justify-center ">
+    <div className="w-full mb-10 bg-[#F5F7FE] rounded-4xl">
+      <div className="flex flex-col items-start justify-center pl-4 pt-10">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +114,7 @@ export function Services() {
         />
       </div>
 
-      <div className="lg:mt-20 mb-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center">
+      <div className="mt-4 mb-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center">
         {data.map((item, index) => (
           <div
             key={index}
@@ -126,16 +132,15 @@ export function Services() {
       </div>
 
       {showList && !showAll && (
-        <div className="text-center w-full">
-          {/* <button
+        <div className="flex justify-end w-full mb-10">
+          <AnimatedButton
             onClick={() => {
               setShowAll(true);
               setData(services);
             }}
-            className="mt-4 text-blue-600 hover:underline font-semibold"
           >
-            View All Services
-          </button> */}
+            Read More
+          </AnimatedButton>
         </div>
       )}
     </div>
@@ -151,48 +156,89 @@ type CardProps = {
 };
 
 function Card({ title, description, imageUrl, cursor1, cursor2 }: CardProps) {
+  console.log(cursor1, cursor2, imageUrl);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      whileHover={{ scale: 1.03 }}
-      viewport={{ once: true }}
-      className="bg-[#faf0e6] mx-auto rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 h-auto md:h-[490px] w-full sm:w-[350px] md:w-[400px]"
-    >
-      <div className="py-6 md:py-10 px-5 md:px-8 flex flex-col gap-6 md:gap-8">
-        <h2
-          style={{ letterSpacing: "-0.08em" }}
-          className="text-2xl md:text-4xl font-semibold leading-snug text-center text-black"
-        >
-          {title}
-        </h2>
+    // <motion.div
+    //   initial={{ opacity: 0, y: 30 }}
+    //   whileInView={{ opacity: 1, y: 0 }}
+    //   transition={{ duration: 0.6, ease: "easeOut" }}
+    //   whileHover={{ scale: 1.03 }}
+    //   viewport={{ once: true }}
+    //   className="bg-[#faf0e6] mx-auto rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 h-auto md:h-[490px] sm:w-[350px] md:w-[400px]"
+    // >
+    //   <div className="py-6 md:py-10 px-5 md:px-8 flex flex-col gap-6 md:gap-8">
+    //     <h2
+    //       style={{ letterSpacing: "-0.08em" }}
+    //       className="text-2xl md:text-4xl font-semibold leading-snug text-center text-black"
+    //     >
+    //       {title}
+    //     </h2>
 
-        <div className="relative h-[150px] md:h-[190px] overflow-hidden flex items-center justify-center w-full">
-          <Image
-            src={
-              imageUrl ||
-              "https://res.cloudinary.com/dipagek5z/image/upload/v1745829714/adminportal/yepjsgefkswll05luoas.jpg"
-            }
-            alt="Card Image"
-            width={400}
-            height={400}
-            className="object-cover rounded-lg"
-          />
-          {cursor1 && (
-            <MoveEffect
-              imageUrl={cursor1}
-              orientation="left"
-              className="top-20 md:top-28 left-8 md:left-16"
-            />
-          )}
-          {cursor2 && <MoveEffect imageUrl={cursor2} className="right-0" />}
+    //     <div className="relative h-[150px] md:h-[190px] overflow-hidden flex items-center justify-center w-full">
+    //       <Image
+    //         src={
+    //           imageUrl ||
+    //           "https://res.cloudinary.com/dipagek5z/image/upload/v1745829714/adminportal/yepjsgefkswll05luoas.jpg"
+    //          || "/placeholder.svg"}
+    //         alt="Card Image"
+    //         width={400}
+    //         height={400}
+    //         className="object-cover rounded-lg"
+    //       />
+    //       {cursor1 && (
+    //         <MoveEffect
+    //           imageUrl={cursor1}
+    //           orientation="left"
+    //           className="top-20 md:top-28 left-8 md:left-16"
+    //         />
+    //       )}
+    //       {cursor2 && <MoveEffect imageUrl={cursor2} className="right-0" />}
+    //     </div>
+
+    //     <p className="text-black text-xs md:text-sm font-medium text-center">
+    //       {description}
+    //     </p>
+    //   </div>
+    // </motion.div>
+
+    <div className="w-[390px] h-[455px] bg-white rounded-[2rem] p-8 text-center shadow-md flex flex-col justify-between border group hover:border-black duration-500">
+      <div>
+        <div className="w-[120px] h-[100px] mx-auto mb-6 bg-black group-hover:bg-[#ffc700] duration-500 rounded-xl flex items-center justify-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            viewBox="0 0 67 67"
+            fill="none"
+            className="text-white"
+          >
+            <g clipPath="url(#clip0_240_4)">
+              <path
+                d="M11.1677 27.9139H5.58496C5.58496 49.4997 23.082 67 44.6677 67V61.4164C26.1649 61.4164 11.1677 46.4168 11.1677 27.9139Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M44.6683 5.58348V-0.00012207C29.2492 -0.00012207 16.752 12.4971 16.752 27.9138C16.752 43.333 29.2492 55.8335 44.6683 55.8335V50.2499C32.3329 50.2499 22.3356 40.2501 22.3356 27.9146C22.3356 15.5833 32.3327 5.58348 44.6683 5.58348Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M44.666 11.1663C35.4133 11.1663 27.916 18.6636 27.916 27.9139C27.916 37.1666 35.4133 44.6663 44.666 44.6663V27.9163L61.416 27.9139C61.416 18.6636 53.9196 11.1663 44.666 11.1663Z"
+                fill="currentColor"
+              ></path>
+            </g>
+          </svg>
         </div>
-
-        <p className="text-black text-xs md:text-sm font-medium text-center">
+        <h3 className="text-[28px] font-semibold mb-2">{title}</h3>
+        <p className="text-[#666666] leading-relaxed font-normal text-lg">
           {description}
         </p>
       </div>
-    </motion.div>
+      <a
+        href="#"
+        className="text-black group-hover:text-[#666666] text-lg font-medium underline underline-offset-4 hover:text-blue-600 transition mb-10 duration-600"
+      >
+        Read More
+      </a>
+    </div>
   );
 }

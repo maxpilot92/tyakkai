@@ -16,7 +16,7 @@ const Card = ({
 }) => {
   return (
     <div className="flex flex-col items-start justify-center gap-4 w-full max-w-md mx-auto">
-      <div className="w-full h-[300px] sm:h-[400px] md:h-[476px] relative overflow-hidden rounded-2xl">
+      <div className="h-[300px] sm:h-[400px] md:h-[550px] w-[530px] relative overflow-hidden rounded-2xl">
         <Image
           src={imageUrl}
           alt={title}
@@ -73,7 +73,7 @@ export default function PortfolioPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-            className="mb-28"
+            className="mb-20"
           >
             <Card
               imageUrl={item.screenshots[0].url}
