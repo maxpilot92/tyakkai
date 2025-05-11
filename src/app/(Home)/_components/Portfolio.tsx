@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Portfolio } from "@/types/Portfolio";
 import usePortfolioStore from "@/store/PortfolioStore";
+import AnimatedButton from "@/components/AnimatedButton";
 
 // Extract Card component to its own file in a real application
 const Card = ({
@@ -51,18 +52,19 @@ export default function PortfolioPage() {
   }, [portfolio]);
 
   return (
-    <section className="container mx-auto px-4 lg:mb-4">
-      <div className="flex items-center justify-center">
+    <section className="container px-4 lg:mb-4">
+      <div className="flex items-center justify-around w-full lg:-ml-5 mb-12 md:mb-20">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
           style={{ letterSpacing: "-2px" }}
-          className="w-full lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black mb-12 md:mb-20"
+          className="w-full lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black"
         >
           Our work is not just a preview, but is present in the real world!
         </motion.h1>
+        <AnimatedButton>Read More</AnimatedButton>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -83,7 +83,7 @@ export function Services() {
 
   return (
     <div className="w-full mb-10 bg-[#F5F7FE] rounded-4xl">
-      <div className="flex flex-col items-start justify-center pl-4 pt-10">
+      <div className="flex flex-col items-start justify-center pl-9 pt-10">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ export function Services() {
         />
       </div>
 
-      <div className="mt-4 mb-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center">
+      <div className="mt-4 mb-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center lg:pl-4">
         {data.map((item, index) => (
           <div
             key={index}
