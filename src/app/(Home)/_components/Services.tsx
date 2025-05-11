@@ -201,16 +201,16 @@ function Card({ title, description, imageUrl, cursor1, cursor2 }: CardProps) {
     //   </div>
     // </motion.div>
 
-    <div className="w-[390px] h-[455px] bg-white rounded-[2rem] p-8 text-center shadow-md flex flex-col justify-between border group hover:border-black duration-500">
+    <div className="w-[390px] h-[455px] bg-white rounded-[2rem] p-8 text-center shadow-md flex flex-col justify-between border group hover:border-black duration-600">
       <div>
-        <div className="w-[120px] h-[100px] mx-auto mb-6 bg-black group-hover:bg-[#ffc700] duration-500 rounded-xl flex items-center justify-center">
+        <div className="w-[120px] h-[100px] mx-auto mb-6 bg-black group-hover:bg-[#ffc700] duration-600 rounded-xl flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="60"
             height="60"
             viewBox="0 0 67 67"
             fill="none"
-            className="text-white group-hover:text-black"
+            className="text-white group-hover:text-black duration-600"
           >
             <g clipPath="url(#clip0_240_4)">
               <path
