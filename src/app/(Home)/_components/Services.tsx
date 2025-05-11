@@ -210,7 +210,7 @@ function Card({ title, description, imageUrl, cursor1, cursor2 }: CardProps) {
             height="60"
             viewBox="0 0 67 67"
             fill="none"
-            className="text-white"
+            className="text-white group-hover:text-black"
           >
             <g clipPath="url(#clip0_240_4)">
               <path
