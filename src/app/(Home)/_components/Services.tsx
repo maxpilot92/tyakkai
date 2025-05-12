@@ -83,7 +83,7 @@ export function Services() {
 
   return (
     <div className="w-screen relative left-1/2 -translate-x-1/2 mb-10 bg-[#F5F7FE] overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col gap-8 md:gap-16">
+      <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-start justify-center lg:pl-5 pt-10">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
