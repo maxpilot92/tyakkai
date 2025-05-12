@@ -107,7 +107,7 @@ export function Services() {
           </motion.h1>
         </div>
 
-        <div className="flex w-full items-start mt-10 justify-start lg:pl-9">
+        <div className="flex w-full items-start mt-10 justify-start lg:pl-4">
           <TabCarousel
             setActiveCategory={setActiveCategory}
             activeIndex={activeIndex}
