@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <div>
       <Navbar />
-      <div className="relative">
+      <div>
         <HeroSection
           services={services}
           serviceCategories={serviceCategories}

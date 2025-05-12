@@ -247,3 +247,7 @@ img {
   height: auto;
   border-radius: 0.375rem;
 }
+
+body {
+  overflow-x: hidden;
+}

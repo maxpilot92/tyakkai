@@ -123,13 +123,26 @@ export default function HorizontalScrollingCarousel() {
   }, [blog]);
 
   // Adjust the transform to ensure proper scrolling coverage
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-60%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-30%"]);
 
   return (
     <section className="relative lg:-mt-10 lg:-mx-6">
       <div ref={targetRef} className="relative h-[300vh]">
-        <div className="h-screen sticky top-0 flex items-center overflow-hidden">
-          <motion.div style={{ x }} className="flex gap-8 px-8">
+        <div className="h-screen sticky top-0 flex flex-col items-center justify-center overflow-hidden">
+          {/* Make title part of the sticky container */}
+          <motion.h2
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            style={{ letterSpacing: "-2px" }}
+            className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0 mt-8 z-30"
+          >
+            Explore Our Latest Blogs
+          </motion.h2>
+
+          {/* Horizontally scrolling blog cards */}
+          <motion.div style={{ x }} className="flex gap-8 px-8 mt-10">
             {blogs.map((item) => (
               <BlogLayout key={item.id} blog={item} />
             ))}

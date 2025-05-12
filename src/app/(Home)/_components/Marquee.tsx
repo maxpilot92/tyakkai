@@ -27,7 +27,7 @@ const reviews = [
 
 export function MarqueeLogo() {
   // You can tweak these to whatever height/width you want:
-  const LOGO_CONTAINER = "h-24 w-48";
+  const LOGO_CONTAINER = "h-24 w-38";
 
   return (
     <div className="relative flex max-w-5xl mx-auto items-center justify-center overflow-hidden py-10">
@@ -35,7 +35,7 @@ export function MarqueeLogo() {
         {reviews.map(({ img, alt }, idx) => (
           <div
             key={idx}
-            className={`flex flex-shrink-0 items-center justify-center px-6 ${LOGO_CONTAINER}`}
+            className={`flex flex-shrink-0 items-center justify-center  ${LOGO_CONTAINER}`}
           >
             <div className="relative  h-30 w-30">
               <Image src={img} alt={alt} fill className="object-contain" />

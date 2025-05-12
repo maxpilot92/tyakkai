@@ -82,67 +82,69 @@ export function Services() {
   }
 
   return (
-    <div className="w-full mb-10 bg-[#F5F7FE] rounded-4xl">
-      <div className="flex flex-col items-start justify-center pl-9 pt-10">
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-          style={{ letterSpacing: "-2px" }}
-          className=" text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
-        >
-          All design, branding &
-        </motion.h1>
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-          style={{ letterSpacing: "-2px" }}
-          className=" text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
-        >
-          Marketing services for you
-        </motion.h1>
-      </div>
-
-      <div className="flex w-full items-start mt-10 justify-start">
-        <TabCarousel
-          setActiveCategory={setActiveCategory}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
-      </div>
-
-      <div className="mt-4 mb-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center lg:pl-4">
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col lg:flex-row gap-10 lg:gap-10 mb-10"
+    <div className="w-screen relative left-1/2 -translate-x-1/2 mb-10 flex items-center justify-center bg-[#F5F7FE] overflow-hidden">
+      <div>
+        <div className="flex flex-col items-start justify-center pl-9 pt-10">
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            style={{ letterSpacing: "-2px" }}
+            className=" text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
           >
-            <Card
-              title={item.title}
-              description={item.description}
-              imageUrl={item.image}
-              cursor2={item.cursor2}
-              cursor1={item.cursor1}
-            />
-          </div>
-        ))}
-      </div>
-
-      {showList && !showAll && (
-        <div className="flex justify-end w-full mb-10">
-          <AnimatedButton
-            onClick={() => {
-              setShowAll(true);
-              setData(services);
-            }}
+            All design, branding &
+          </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            style={{ letterSpacing: "-2px" }}
+            className=" text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0"
           >
-            Read More
-          </AnimatedButton>
+            Marketing services for you
+          </motion.h1>
         </div>
-      )}
+
+        <div className="flex w-full items-start mt-10 justify-start">
+          <TabCarousel
+            setActiveCategory={setActiveCategory}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        </div>
+
+        <div className="mt-4 mb-10 flex flex-wrap gap-8 ml-4 md:ml-0 w-full items-center lg:pl-4">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-col lg:flex-row gap-10 lg:gap-10 mb-10"
+            >
+              <Card
+                title={item.title}
+                description={item.description}
+                imageUrl={item.image}
+                cursor2={item.cursor2}
+                cursor1={item.cursor1}
+              />
+            </div>
+          ))}
+        </div>
+
+        {showList && !showAll && (
+          <div className="flex justify-end w-full mb-10">
+            <AnimatedButton
+              onClick={() => {
+                setShowAll(true);
+                setData(services);
+              }}
+            >
+              Read More
+            </AnimatedButton>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
