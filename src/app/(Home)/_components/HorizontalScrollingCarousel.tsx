@@ -123,7 +123,7 @@ export default function HorizontalScrollingCarousel() {
   }, [blog]);
 
   // Adjust the transform to ensure proper scrolling coverage
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-30%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
 
   return (
     <section className="relative lg:-mt-10 lg:-mx-6">
