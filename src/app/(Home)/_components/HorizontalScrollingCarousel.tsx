@@ -123,7 +123,7 @@ export default function HorizontalScrollingCarousel() {
   }, [blog]);
 
   // Adjust the transform to ensure proper scrolling coverage
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["30%", "-30%"]);
 
   return (
     <section className="relative lg:-mt-10 lg:-mx-6">
@@ -136,7 +136,7 @@ export default function HorizontalScrollingCarousel() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
             style={{ letterSpacing: "-2px" }}
-            className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0 mt-8 z-30"
+            className="lg:w-[800px] text-3xl md:text-4xl lg:text-[56px] font-medium text-center text-black ml-3 sm:ml-0 mt-8 z-30 mb-5"
           >
             Explore Our Latest Blogs
           </motion.h2>

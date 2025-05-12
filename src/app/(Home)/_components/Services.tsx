@@ -83,8 +83,8 @@ export function Services() {
 
   return (
     <div className="w-screen relative left-1/2 -translate-x-1/2 mb-10 bg-[#F5F7FE] overflow-hidden">
-      <div>
-        <div className="flex flex-col items-start justify-center lg:pl-16 pt-10">
+      <div className="max-w-7xl mx-auto flex flex-col gap-8 md:gap-16">
+        <div className="flex flex-col items-start justify-center lg:pl-5 pt-10">
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +107,7 @@ export function Services() {
           </motion.h1>
         </div>
 
-        <div className="flex w-full items-start mt-10 justify-start lg:pl-10">
+        <div className="flex w-full items-start mt-10 justify-start">
           <TabCarousel
             setActiveCategory={setActiveCategory}
             activeIndex={activeIndex}
@@ -115,7 +115,7 @@ export function Services() {
           />
         </div>
 
-        <div className="mt-4 mb-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1gap-8 ml-4 md:ml-0 w-full items-center lg:pl-16">
+        <div className="mt-4 mb-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1gap-8 ml-4 md:ml-0 w-full items-center lg:pl-5">
           {data.map((item, index) => (
             <div
               key={index}

@@ -146,9 +146,9 @@ export default function ShortStory() {
 
   return (
     <div ref={ref} className="overflow-hidden">
-      <div className="flex flex-col md:flex-row w-full max-w-screen mx-auto px-4 py-10 relative md:h-[390px]">
+      <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row  md:gap-16">
         {/* Position the title at the top */}
-        <div className="absolute top-20 left-4 flex items-center gap-2 z-10">
+        <div className="absolute top-[138px] left-4 flex items-center gap-2 z-10">
           <motion.div
             variants={iconVariants}
             initial="hidden"

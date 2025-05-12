@@ -203,7 +203,7 @@ export default function HeroSection({
           {/* <HeroParallaxDemo /> */}
           <PortfolioPage />
           <TestimonialCarousel />
-          <div className="-mx-10 mb-10">
+          <div className="mb-20 -mx-10">
             <Faq />
             <Footer />
           </div>

@@ -45,75 +45,77 @@ export default function Faq() {
 
   return (
     <div className=" w-full bg-gray-50 rounded-lg p-6 px-[125px] ">
-      <div className="text-center px-4 lg:px-0">
-        <h1
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center px-4 lg:px-0">
+          <h1
+            style={{
+              letterSpacing: "-2px",
+            }}
+            className="mx-auto leading-tight text-[56px] font-medium text-black dark:text-white max-w-[600px] pt-24 pb-16"
+          >
+            Have a question? We are here to answer.
+          </h1>
+        </div>
+
+        <div
           style={{
-            letterSpacing: "-2px",
+            letterSpacing: "-1px",
+            fontSize: "14px",
+            lineHeight: "140%",
           }}
-          className="mx-auto leading-tight text-[56px] font-medium text-black dark:text-white max-w-[600px] pt-24 pb-16"
+          className="space-y-0 divide-y divide-gray-200 "
         >
-          Have a question? We are here to answer.
-        </h1>
-      </div>
-
-      <div
-        style={{
-          letterSpacing: "-1px",
-          fontSize: "14px",
-          lineHeight: "140%",
-        }}
-        className="space-y-0 divide-y divide-gray-200 "
-      >
-        {faqData.map((faq, index) => (
-          <div key={index} className="py-4">
-            <button
-              onClick={() => toggleAccordion(index)}
-              className="flex justify-between items-center w-full text-left py-2 focus:outline-none"
-            >
-              <h3 className="text-2xl font-medium text-gray-900 ">
-                {faq.question}
-              </h3>
-              <motion.div
-                animate={{ rotate: openIndex === index ? 45 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="flex-shrink-0 ml-2 cursor-pointer"
+          {faqData.map((faq, index) => (
+            <div key={index} className="py-4">
+              <button
+                onClick={() => toggleAccordion(index)}
+                className="flex justify-between items-center w-full text-left py-2 focus:outline-none"
               >
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 22 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    opacity="0.5"
-                    d="M11 0L12.5556 9.44437L22 11L12.5556 12.5556L11 22L9.44437 12.5556L0 11L9.44437 9.44437L11 0Z"
-                    fill="#101010"
-                  />
-                </svg>
-              </motion.div>
-            </button>
-
-            <AnimatePresence>
-              {openIndex === index && (
+                <h3 className="text-2xl font-medium text-gray-900 ">
+                  {faq.question}
+                </h3>
                 <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
+                  animate={{ rotate: openIndex === index ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                  style={{
-                    letterSpacing: "0px",
-                  }}
+                  className="flex-shrink-0 ml-2 cursor-pointer"
                 >
-                  <div className="pt-4 pb-2 pr-8 text-gray-600">
-                    {faq.answer}
-                  </div>
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      opacity="0.5"
+                      d="M11 0L12.5556 9.44437L22 11L12.5556 12.5556L11 22L9.44437 12.5556L0 11L9.44437 9.44437L11 0Z"
+                      fill="#101010"
+                    />
+                  </svg>
                 </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
+              </button>
+
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                    style={{
+                      letterSpacing: "0px",
+                    }}
+                  >
+                    <div className="pt-4 pb-2 pr-8 text-gray-600">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

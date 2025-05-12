@@ -52,7 +52,7 @@ export default function TestimonialCarousel() {
   return (
     <div className="w-full h-[590px] max-w-[1150px] mx-auto relative overflow-hidden flex flex-col bg-[url('/testimonialBg.svg')] bg-cover bg-center bg-no-repeat">
       {/* Testimonial content */}
-      <div className="relative h-[300px] flex items-center justify-center mt-36">
+      <div className="relative h-[300px] flex items-center justify-center mt-40">
         <AnimatePresence mode="wait" initial={false} custom={direction}>
           <motion.div
             key={currentIndex}
@@ -88,63 +88,6 @@ export default function TestimonialCarousel() {
           </motion.div>
         </AnimatePresence>
       </div>
-
-      {/* Navigation dots */}
-      {/* <div className="absolute bottom-12 left-0 right-0 flex justify-center gap-2">
-        {testimonials.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-purple-600" : "bg-gray-300"
-            }`}
-            onClick={() => {
-              setDirection(index > currentIndex ? 1 : -1);
-              setCurrentIndex(index);
-            }}
-            aria-label={`Go to testimonial ${index + 1}`}
-          />
-        ))}
-      </div> */}
-
-      {/* Navigation arrows */}
-      {/* <button
-        onClick={handlePrev}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md hover:bg-white"
-        aria-label="Previous testimonial"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md hover:bg-white"
-        aria-label="Next testimonial"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button> */}
     </div>
   );
 }

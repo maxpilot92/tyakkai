@@ -4,10 +4,9 @@ import AnimatedButton from "./AnimatedButton";
 
 const Footer = () => {
   return (
-    <footer className=" mx-[125px] mb-10">
+    <footer className="mx-10">
       {/* Main footer with dark background */}
       <div className="bg-black text-white rounded-4xl">
-        {/* Call to action section */}
         <div className="mx-auto px-6 md:px-12 lg:px-16 pt-16 pb-8 border-b border-gray-800 flex justify-between items-center flex-col md:flex-row">
           <div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-400 mb-2">
@@ -21,7 +20,6 @@ const Footer = () => {
             Book a call with us!{" "}
           </AnimatedButton>
         </div>
-
         {/* Footer content section */}
         <div className="flex gap-10 mx-auto px-6 md:px-12 lg:px-16 py-12">
           <div className="md:col-span-1 w-[40%]">
@@ -183,6 +181,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <div className="w-full h-10" />
     </footer>
   );
 };

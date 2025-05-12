@@ -52,7 +52,7 @@ export default function PortfolioPage() {
   }, [portfolio]);
 
   return (
-    <section className="container px-4 lg:mb-4">
+    <section className="container px-4 lg:mb-4 max-w-7xl mx-auto">
       <div className="flex items-center justify-around w-full lg:-ml-5 mb-12 md:mb-20">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
